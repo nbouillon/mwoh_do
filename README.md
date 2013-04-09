@@ -1,0 +1,1 @@
+This is my first attempt at an application that can determine the best possible combination of cards from an input of 5+ Marvel War of Heroes cards.
