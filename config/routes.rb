@@ -1,11 +1,12 @@
 MwohDo::Application.routes.draw do
-  get "cards/new"
+  resources :cards
 
   root to: 'static_pages#home'
 
   match '/math',    to: 'static_pages#math'
   match '/about',   to: 'static_pages#about'
   match '/optimizer', to: 'optimizer#new'
+  match '/newcard', to: 'cards#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

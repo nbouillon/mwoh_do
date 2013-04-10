@@ -1,3 +1,48 @@
 <% provide(:title, 'Add Card') %>
 <h1>Form for Adding a new Card to the Database</h1>
 <p>We will see...</p>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@card) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :align %>
+      <%= f.select :align, ['Bruiser','Speed','Tactics'] %>
+
+      <%= f.label :pwr %>
+      <%= f.text_field :pwr %>
+
+      <%= f.label :attack %>
+      <%= f.text_field :attack %>
+
+      <%= f.label :defense %>
+      <%= f.text_field :defense %>
+
+      <%= f.label :gender %>
+      <%= f.select :gender, ['Male','Female'] %>
+
+      <%= f.label :faction %>
+      <%= f.select :faction, ['Super Hero','Villain'] %>
+
+      <%= f.label :usage %>
+      <%= f.select :usage, ['None','Average','Alot','Very Low'] %>
+
+      <%= f.label :abil_adj %>
+      <%= f.select :abil_adj, ['None','Partially','Notably','Remarkably', 'Significantly', 'Extremely'] %>
+
+      <%= f.label :abil_who %>
+      <%= f.select :abil_who, ['None','Increase','Decrease'] %>
+
+      <%= f.label :abil_what %>
+      <%= f.select :abil_what, ['None','ATK','DEF','ATK/DEF'] %>
+
+      <%= f.label :abil_type %>
+      <%= f.select :abil_type, ['None','Bruisers','Speeds','Tactics','Self','All'] %>
+
+      <%= f.submit "Add the Card", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
