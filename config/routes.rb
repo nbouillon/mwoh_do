@@ -1,4 +1,6 @@
 MwohDo::Application.routes.draw do
+  get "cards/new"
+
   root to: 'static_pages#home'
 
   match '/math',    to: 'static_pages#math'
