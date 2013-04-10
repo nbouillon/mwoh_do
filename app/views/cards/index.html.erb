@@ -1,0 +1,13 @@
+<% provide(:title, 'All Cards') %>
+<h1>All Cards</h1>
+
+<ul class="cards">
+  <% @cards.each do |card| %>
+    <li>
+      <%= image_for card %>
+      <%= link_to card.name, card %> 
+      <%= card.align %>, <%= card.attack %>, <%= card.defense %> | 
+      <%= link_to "delete", card, method: :delete, data: { confirm: "You sure?" } %>
+    </li>
+  <% end %>
+</ul>

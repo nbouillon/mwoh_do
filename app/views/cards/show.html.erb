@@ -1,6 +1,11 @@
 <% provide(:title, @card.name) %>
 <h1><%= @card.name %></h1>
 <%= image_for @card %><br>
-<%= @card.pwr %><br>
-<%= @card.attack %><br>
-<%= @card.defense %><br>
+<b>Alignment:</b> <%= @card.align %><br>
+<b>PWR REQ:</b> <%= @card.pwr %><br>
+<b>ATK:</b> <%= @card.attack %><br>
+<b>DEF:</b> <%= @card.defense %><br>
+<b>Gender:</b> <%= @card.gender %><br>
+<b>Faction:</b> <%= @card.faction %><br>
+<b>Ability Usage:</b> <%= @card.usage %><br>
+<b><%= @card.abil_adj %> <%= @card.abil_who %> <%= @card.abil_what %> of <%= @card.abil_type %></b>
