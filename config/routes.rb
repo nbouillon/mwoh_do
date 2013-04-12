@@ -7,6 +7,7 @@ MwohDo::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/optimizer', to: 'optimizer#new'
   match '/newcard', to: 'cards#new'
+  match '/optimize', to: 'optimizer#test'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

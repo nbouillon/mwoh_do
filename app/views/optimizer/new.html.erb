@@ -1,3 +1,21 @@
 <% provide(:title, 'Optimizer (Beta)') %>
-<h1>Optimizer#new</h1>
-<p>Find me in app/views/optimizer/new.html.erb</p>
+<% alignment_array = ["BRU","SPD","TAC"] %>
+<h1>Deck Optimizer (Beta)</h1>
+<p>Type in the stats of the 5 cards you want to optimize.</p>
+
+<table>
+<tr>
+<%= form_tag("/optimize", :method => "get") do %>
+  <td><%= label_tag(:name, "Name") %>
+  <%= text_field_tag(:name , nil, style: 'width:200px') %></td>
+  <td><%= label_tag(:name, "Alignment") %>
+  <%= select(:align , :align2, alignment_array, {},style: 'width:75px') %></td>
+  <td><%= label_tag(:num, "PWR") %>
+  <%= text_field_tag(:num, nil, style: 'width:30px') %></td>
+  <td><%= label_tag(:attack, "ATK") %>
+  <%= text_field_tag(:attack, nil, style: 'width:50px') %></td>
+  <td><%= label_tag(:defense, "DEF") %>
+  <%= text_field_tag(:defense, nil, style: 'width:50px') %></td>
+</tr></table>
+  <%= submit_tag("Try it") %>
+<% end %>
