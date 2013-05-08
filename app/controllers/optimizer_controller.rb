@@ -847,6 +847,340 @@ class OptimizerController < ApplicationController
       cardlist.append(newcard)
     end
 
+    if params[:name6] != ""
+      newcard = {}
+      newcard['name'] = params[:name6]
+      newcard['origin'] = params[:align6]
+      newcard['pwr'] = params[:pwr6].to_i
+      newcard['atk'] = params[:attack6].to_i
+      newcard['def'] = params[:defense6].to_i
+      temp_effect = params[:abil_effect6]
+      temp_what = params[:abil_what6]
+      temp_who = params[:abil_who6]
+      temp_adj = params[:abil_adj6]
+      temp_usage = params[:usage6]
+
+      if temp_effect == "Increase"
+        if temp_what == "ATK"
+          newcard['boost_atk'] = "Yes"
+          newcard['boost_def'] = "No"
+          if temp_who == "Self"
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 24.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 36.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 48.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 60.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          elsif temp_who == "All"
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 3.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 6.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 16.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 4.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 8.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 16.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 20.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          end
+        elsif temp_what == "DEF"
+          newcard['boost_atk'] = "No"
+          newcard['boost_def'] = "Yes"
+          if temp_who == "Self"
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 24.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 36.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 48.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 60.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          elsif temp_who == "All"
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 3.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 6.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 16.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 4.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 8.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 16.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 20.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          end
+        elsif temp_what == "ATK/DEF"
+          newcard['boost_atk'] = "Yes"
+          newcard['boost_def'] = "Yes"
+          if temp_who == "Self"
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 10.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 20.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 30.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 40.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 50.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          elsif temp_who == "All"
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 2.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 4.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 7.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 12.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 3.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 6.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 16.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          end
+        else
+          newcard['boost_atk'] = "No"
+          newcard['boost_def'] = "No"
+          newcard['a_pct'] = 0.0
+        end
+      else
+        newcard['boost_atk'] = "No"
+        newcard['boost_def'] = "No"
+        newcard['a_pct'] = 0.0
+      end
+      newcard['a_who'] = temp_who
+      newcard['a_usage'] = temp_usage
+      cardlist.append(newcard)
+    end
+
+    if params[:name7] != ""
+      newcard = {}
+      newcard['name'] = params[:name7]
+      newcard['origin'] = params[:align7]
+      newcard['pwr'] = params[:pwr7].to_i
+      newcard['atk'] = params[:attack7].to_i
+      newcard['def'] = params[:defense7].to_i
+      temp_effect = params[:abil_effect7]
+      temp_what = params[:abil_what7]
+      temp_who = params[:abil_who7]
+      temp_adj = params[:abil_adj7]
+      temp_usage = params[:usage7]
+
+      if temp_effect == "Increase"
+        if temp_what == "ATK"
+          newcard['boost_atk'] = "Yes"
+          newcard['boost_def'] = "No"
+          if temp_who == "Self"
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 24.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 36.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 48.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 60.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          elsif temp_who == "All"
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 3.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 6.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 16.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 4.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 8.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 16.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 20.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          end
+        elsif temp_what == "DEF"
+          newcard['boost_atk'] = "No"
+          newcard['boost_def'] = "Yes"
+          if temp_who == "Self"
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 24.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 36.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 48.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 60.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          elsif temp_who == "All"
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 3.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 6.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 16.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 4.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 8.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 16.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 20.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          end
+        elsif temp_what == "ATK/DEF"
+          newcard['boost_atk'] = "Yes"
+          newcard['boost_def'] = "Yes"
+          if temp_who == "Self"
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 10.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 20.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 30.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 40.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 50.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          elsif temp_who == "All"
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 2.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 4.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 7.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 12.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            if temp_adj == "Partially"
+              newcard['a_pct'] = 3.0
+            elsif temp_adj == "Notably"
+              newcard['a_pct'] = 6.0
+            elsif temp_adj == "Remarkably"
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "Significantly"
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "Extremely"
+              newcard['a_pct'] = 16.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          end
+        else
+          newcard['boost_atk'] = "No"
+          newcard['boost_def'] = "No"
+          newcard['a_pct'] = 0.0
+        end
+      else
+        newcard['boost_atk'] = "No"
+        newcard['boost_def'] = "No"
+        newcard['a_pct'] = 0.0
+      end
+      newcard['a_who'] = temp_who
+      newcard['a_usage'] = temp_usage
+      cardlist.append(newcard)
+    end
+
     numcards = cardlist.length
 
     if numcards < 5

@@ -22,15 +22,16 @@
 <br><br>
 <h1>Deck Optimizer (Beta)</h1>
 <p>Type in the stats of the 5 cards you want to optimize.</p>
-Current Limitations of the Optimizer:<br>
+<b>Current Limitations of the Optimizer:</b><br>
 <ul>
   <li>5% Alliance adapter bonus is automatically added in</li>
   <li>No option for alliance position bonus (doesn't change optimal deck, just the avg attack)</li>
+  <li>Debuffs are not taken into account, only boosts</li>
   <li>Only optimizes attack (for now...)</li>
   <li>No Ability Levels taken into account (assumed to be level 1)</li>
 </ul>
 <br>
-Instructions:<br>
+<b>Instructions:</b><br>
 <ul>
   <li>Fill in the names, alignments, atks, and abilities of at least 5 cards (pwr and defense currently do nothing)</li>
   <li>Press the "Try It" button at the bottom</li>
@@ -148,6 +149,50 @@ Instructions:<br>
   <%= select_tag(:abil_who5 , options_for_select(who_array,params[:abil_who5]),style: 'width:90px') %></td>
   <td>
   <%= select_tag(:usage5 , options_for_select(usage_array,params[:usage5]),style: 'width:135px') %></td>
+</tr>
+<tr>
+  <td>
+  <%= text_field_tag(:name6, params[:name6], style: 'width:200px') %></td>
+  <td>
+  <%= select_tag(:align6, options_for_select(alignment_array,params[:align6]), style: 'width:70px') %></td>
+  <td>
+  <%= text_field_tag(:pwr6, params[:pwr6], style: 'width:30px') %></td>
+  <td>
+  <%= text_field_tag(:attack6, params[:attack6], style: 'width:50px') %></td>
+  <td>
+  <%= text_field_tag(:defense6, params[:defense6], style: 'width:50px') %></td>
+  <td>
+  <%= select_tag(:abil_adj6, options_for_select(adj_array,params[:abil_adj6]),style: 'width:115px') %></td>
+  <td>
+  <%= select_tag(:abil_effect6, options_for_select(effect_array,params[:abil_effect6]),style: 'width:100px') %></td>
+  <td>
+  <%= select_tag(:abil_what6, options_for_select(what_array,params[:abil_what6]),style: 'width:100px') %></td>
+  <td>
+  <%= select_tag(:abil_who6, options_for_select(who_array,params[:abil_who6]),style: 'width:90px') %></td>
+  <td>
+  <%= select_tag(:usage6, options_for_select(usage_array,params[:usage6]),style: 'width:135px') %></td>
+</tr>
+<tr>
+  <td>
+  <%= text_field_tag(:name7, params[:name7], style: 'width:200px') %></td>
+  <td>
+  <%= select_tag(:align7, options_for_select(alignment_array,params[:align7]), style: 'width:70px') %></td>
+  <td>
+  <%= text_field_tag(:pwr7, params[:pwr7], style: 'width:30px') %></td>
+  <td>
+  <%= text_field_tag(:attack7, params[:attack7], style: 'width:50px') %></td>
+  <td>
+  <%= text_field_tag(:defense7, params[:defense7], style: 'width:50px') %></td>
+  <td>
+  <%= select_tag(:abil_adj7, options_for_select(adj_array,params[:abil_adj7]),style: 'width:115px') %></td>
+  <td>
+  <%= select_tag(:abil_effect7, options_for_select(effect_array,params[:abil_effect7]),style: 'width:100px') %></td>
+  <td>
+  <%= select_tag(:abil_what7, options_for_select(what_array,params[:abil_what7]),style: 'width:100px') %></td>
+  <td>
+  <%= select_tag(:abil_who7, options_for_select(who_array,params[:abil_who7]),style: 'width:90px') %></td>
+  <td>
+  <%= select_tag(:usage7, options_for_select(usage_array,params[:usage7]),style: 'width:135px') %></td>
 </tr></table>
   <%= submit_tag("Try it") %>
 <% end %>
