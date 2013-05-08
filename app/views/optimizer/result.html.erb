@@ -1,2 +1,155 @@
 <% provide(:title, 'Results (Beta)') %>
-<p><%= @name %> = <%= @num %> of type <%= @align %></p>
+<% alignment_array = ["BRU","SPD","TAC"] %>
+<% usage_array = ["None","Low","Relatively Low","Average","Relatively High","High"] %>
+<% adj_array = ["None",'Partially','Notably','Remarkably','Significantly','Extremely'] %>
+<% effect_array = ["None","Increase","Decrease"] %>
+<% who_array = ["None","Bruisers","Speeds","Tactics","Self","All"] %>
+<% what_array = ["None","ATK","DEF","ATK/DEF"] %>
+
+<h1>Results (Beta)</h1>
+<b>Best deck position 1 (Middle):</b> <%= @best1['name'] %><br>
+<b>Best deck position 2:</b> <%= @best2['name'] %><br>
+<b>Best deck position 3:</b> <%= @best3['name'] %><br>
+<b>Best deck position 4:</b> <%= @best4['name'] %><br>
+<b>Best deck position 5:</b> <%= @best5['name'] %>
+<br><br>
+<b>Base Attack:</b> <%= @base %><br>
+<b>Pre-Abilities Attack:</b> <%= @pre %><br>
+<b>Average Total Attack:</b> <%= @avg %><br>
+<br>
+<b>TIP! - Bookmark this page to save the cards you've entered for next time</b>
+
+<br><br>
+<h1>Deck Optimizer (Beta)</h1>
+<p>Type in the stats of the 5 cards you want to optimize.</p>
+Current Limitations of the Optimizer:<br>
+<ul>
+  <li>5% Alliance adapter bonus is automatically added in</li>
+  <li>No option for alliance position bonus (doesn't change optimal deck, just the avg attack)</li>
+  <li>Only optimizes attack (for now...)</li>
+  <li>No Ability Levels taken into account (assumed to be level 1)</li>
+</ul>
+<br>
+Instructions:<br>
+<ul>
+  <li>Fill in the names, alignments, atks, and abilities of at least 5 cards (pwr and defense currently do nothing)</li>
+  <li>Press the "Try It" button at the bottom</li>
+</ul>
+<br>
+
+<table>
+<%= form_tag("/optimize", :method => "get") do %>
+<tr>
+  <td><%= label_tag(:name, "Name") %>
+  <%= text_field_tag(:name , params[:name], style: 'width:200px') %></td>
+  <td><%= label_tag(:name, "Alignment") %>
+  <%= select_tag(:align , options_for_select(alignment_array,params[:align]), style: 'width:70px') %></td>
+  <td><%= label_tag(:pwr, "PWR") %>
+  <%= text_field_tag(:pwr, params[:pwr], style: 'width:30px') %></td>
+  <td><%= label_tag(:attack, "ATK") %>
+  <%= text_field_tag(:attack, params[:attack], style: 'width:50px') %></td>
+  <td><%= label_tag(:defense, "DEF") %>
+  <%= text_field_tag(:defense, params[:defense], style: 'width:50px') %></td>
+  <td><%= label_tag(:abil_adj, "Ability Adjective") %>
+  <%= select_tag(:abil_adj , options_for_select(adj_array,params[:abil_adj]),style: 'width:115px') %></td>
+  <td><%= label_tag(:abil_effect, "Ability Effect") %>
+  <%= select_tag(:abil_effect , options_for_select(effect_array,params[:abil_effect]),style: 'width:100px') %></td>
+  <td><%= label_tag(:abil_what, "Ability What") %>
+  <%= select_tag(:abil_what , options_for_select(what_array,params[:abil_what]),style: 'width:100px') %></td>
+  <td><%= label_tag(:abil_who, "Ability Who") %>
+  <%= select_tag(:abil_who , options_for_select(who_array,params[:abil_who]),style: 'width:90px') %></td>
+  <td><%= label_tag(:usage, "Ability Usage") %>
+  <%= select_tag(:usage , options_for_select(usage_array,params[:usage]),style: 'width:135px') %></td>
+</tr>
+<tr>
+  <td>
+  <%= text_field_tag(:name2 , params[:name2], style: 'width:200px') %></td>
+  <td>
+  <%= select_tag(:align2 , options_for_select(alignment_array,params[:align2]), style: 'width:70px') %></td>
+  <td>
+  <%= text_field_tag(:pwr2, params[:pwr2], style: 'width:30px') %></td>
+  <td>
+  <%= text_field_tag(:attack2, params[:attack2], style: 'width:50px') %></td>
+  <td>
+  <%= text_field_tag(:defense2, params[:defense2], style: 'width:50px') %></td>
+  <td>
+  <%= select_tag(:abil_adj2 , options_for_select(adj_array,params[:abil_adj2]),style: 'width:115px') %></td>
+  <td>
+  <%= select_tag(:abil_effect2 , options_for_select(effect_array,params[:abil_effect2]),style: 'width:100px') %></td>
+  <td>
+  <%= select_tag(:abil_what2 , options_for_select(what_array,params[:abil_what2]),style: 'width:100px') %></td>
+  <td>
+  <%= select_tag(:abil_who2 , options_for_select(who_array,params[:abil_who2]),style: 'width:90px') %></td>
+  <td>
+  <%= select_tag(:usage2 , options_for_select(usage_array,params[:usage2]),style: 'width:135px') %></td>
+</tr>
+<tr>
+  <td>
+  <%= text_field_tag(:name3 , params[:name3], style: 'width:200px') %></td>
+  <td>
+  <%= select_tag(:align3 , options_for_select(alignment_array,params[:align3]),style: 'width:70px') %></td>
+  <td>
+  <%= text_field_tag(:pwr3, params[:pwr3], style: 'width:30px') %></td>
+  <td>
+  <%= text_field_tag(:attack3, params[:attack3], style: 'width:50px') %></td>
+  <td>
+  <%= text_field_tag(:defense3, params[:defense3], style: 'width:50px') %></td>
+  <td>
+  <%= select_tag(:abil_adj3 , options_for_select(adj_array,params[:abil_adj3]),style: 'width:115px') %></td>
+  <td>
+  <%= select_tag(:abil_effect3 , options_for_select(effect_array,params[:abil_effect3]),style: 'width:100px') %></td>
+  <td>
+  <%= select_tag(:abil_what3 , options_for_select(what_array,params[:abil_what3]),style: 'width:100px') %></td>
+  <td>
+  <%= select_tag(:abil_who3 , options_for_select(who_array,params[:abil_who3]),style: 'width:90px') %></td>
+  <td>
+  <%= select_tag(:usage3 , options_for_select(usage_array,params[:usage3]),style: 'width:135px') %></td>
+</tr>
+<tr>
+  <td>
+  <%= text_field_tag(:name4 , params[:name4], style: 'width:200px') %></td>
+  <td>
+  <%= select_tag(:align4 , options_for_select(alignment_array,params[:align4]),style: 'width:70px') %></td>
+  <td>
+  <%= text_field_tag(:pwr4, params[:pwr4], style: 'width:30px') %></td>
+  <td>
+  <%= text_field_tag(:attack4, params[:attack4], style: 'width:50px') %></td>
+  <td>
+  <%= text_field_tag(:defense4, params[:defense4], style: 'width:50px') %></td>
+  <td>
+  <%= select_tag(:abil_adj4 , options_for_select(adj_array,params[:abil_adj4]),style: 'width:115px') %></td>
+  <td>
+  <%= select_tag(:abil_effect4 , options_for_select(effect_array,params[:abil_effect4]),style: 'width:100px') %></td>
+  <td>
+  <%= select_tag(:abil_what4 , options_for_select(what_array,params[:abil_what4]),style: 'width:100px') %></td>
+  <td>
+  <%= select_tag(:abil_who4 , options_for_select(who_array,params[:abil_who4]),style: 'width:90px') %></td>
+  <td>
+  <%= select_tag(:usage4 , options_for_select(usage_array,params[:usage4]),style: 'width:135px') %></td>
+</tr>
+<tr>
+  <td>
+  <%= text_field_tag(:name5 , params[:name5], style: 'width:200px') %></td>
+  <td>
+  <%= select_tag(:align5 , options_for_select(alignment_array,params[:align5]), style: 'width:70px') %></td>
+  <td>
+  <%= text_field_tag(:pwr5, params[:pwr5], style: 'width:30px') %></td>
+  <td>
+  <%= text_field_tag(:attack5, params[:attack5], style: 'width:50px') %></td>
+  <td>
+  <%= text_field_tag(:defense5, params[:defense5], style: 'width:50px') %></td>
+  <td>
+  <%= select_tag(:abil_adj5 , options_for_select(adj_array,params[:abil_adj5]),style: 'width:115px') %></td>
+  <td>
+  <%= select_tag(:abil_effect5 , options_for_select(effect_array,params[:abil_effect5]),style: 'width:100px') %></td>
+  <td>
+  <%= select_tag(:abil_what5 , options_for_select(what_array,params[:abil_what5]),style: 'width:100px') %></td>
+  <td>
+  <%= select_tag(:abil_who5 , options_for_select(who_array,params[:abil_who5]),style: 'width:90px') %></td>
+  <td>
+  <%= select_tag(:usage5 , options_for_select(usage_array,params[:usage5]),style: 'width:135px') %></td>
+</tr></table>
+  <%= submit_tag("Try it") %>
+<% end %>
+
+
