@@ -1372,6 +1372,8 @@ class OptimizerController < ApplicationController
       return
     end
 
+    @num = numcards
+
     @base = best_base_atk
     @pre = best_pre_atk
     @avg = best_avg_atk
