@@ -1,8 +1,8 @@
 <% provide(:title, 'Results (Beta)') %>
 <% alignment_array = ["BRU","SPD","TAC"] %>
-<% usage_array = ["None","Low","Relatively Low","Average","Relatively High","High"] %>
-<% adj_array = ["None",'Partially','Notably','Remarkably','Significantly','Extremely'] %>
-<% effect_array = ["None","Increase","Decrease"] %>
+<% usage_array = [["None",0],["Low",1],["Relatively Low",2],["Average",3],["Relatively High",4],["High",5]] %>
+<% adj_array = [["None",0],['Partially',1],['Notably',2],['Remarkably',3],['Significantly',4],['Extremely',5]] %>
+<% effect_array = [["None",0],["Increase",1],["Decrease",2]] %>
 <% who_array = ["None","Bruisers","Speeds","Tactics","Self","All"] %>
 <% what_array = ["None","ATK","DEF","ATK/DEF"] %>
 
@@ -73,15 +73,15 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 <%= form_tag("/optimize", :method => "get") do %>
 <tr>
   <td><%= label_tag(:name, "Name") %>
-  <%= text_field_tag(:name , params[:name], style: 'width:200px') %></td>
+  <%= text_field_tag(:name , params[:name], style: 'width:200px', maxlength: 30) %></td>
   <td><%= label_tag(:name, "Alignment") %>
   <%= select_tag(:align , options_for_select(alignment_array,params[:align]), style: 'width:70px') %></td>
   <td><%= label_tag(:pwr, "PWR") %>
-  <%= text_field_tag(:pwr, params[:pwr], style: 'width:30px') %></td>
+  <%= text_field_tag(:pwr, params[:pwr], style: 'width:30px', maxlength: 2) %></td>
   <td><%= label_tag(:attack, "ATK") %>
-  <%= text_field_tag(:attack, params[:attack], style: 'width:50px') %></td>
+  <%= text_field_tag(:attack, params[:attack], style: 'width:50px', maxlength: 5) %></td>
   <td><%= label_tag(:defense, "DEF") %>
-  <%= text_field_tag(:defense, params[:defense], style: 'width:50px') %></td>
+  <%= text_field_tag(:defense, params[:defense], style: 'width:50px', maxlength: 5) %></td>
   <td><%= label_tag(:abil_adj, "Ability Adjective") %>
   <%= select_tag(:abil_adj , options_for_select(adj_array,params[:abil_adj]),style: 'width:115px') %></td>
   <td><%= label_tag(:abil_effect, "Ability Effect") %>
@@ -95,15 +95,15 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:name2 , params[:name2], style: 'width:200px') %></td>
+  <%= text_field_tag(:name2 , params[:name2], style: 'width:200px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:align2 , options_for_select(alignment_array,params[:align2]), style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:pwr2, params[:pwr2], style: 'width:30px') %></td>
+  <%= text_field_tag(:pwr2, params[:pwr2], style: 'width:30px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:attack2, params[:attack2], style: 'width:50px') %></td>
+  <%= text_field_tag(:attack2, params[:attack2], style: 'width:50px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:defense2, params[:defense2], style: 'width:50px') %></td>
+  <%= text_field_tag(:defense2, params[:defense2], style: 'width:50px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:abil_adj2 , options_for_select(adj_array,params[:abil_adj2]),style: 'width:115px') %></td>
   <td>
@@ -117,15 +117,15 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:name3 , params[:name3], style: 'width:200px') %></td>
+  <%= text_field_tag(:name3 , params[:name3], style: 'width:200px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:align3 , options_for_select(alignment_array,params[:align3]),style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:pwr3, params[:pwr3], style: 'width:30px') %></td>
+  <%= text_field_tag(:pwr3, params[:pwr3], style: 'width:30px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:attack3, params[:attack3], style: 'width:50px') %></td>
+  <%= text_field_tag(:attack3, params[:attack3], style: 'width:50px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:defense3, params[:defense3], style: 'width:50px') %></td>
+  <%= text_field_tag(:defense3, params[:defense3], style: 'width:50px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:abil_adj3 , options_for_select(adj_array,params[:abil_adj3]),style: 'width:115px') %></td>
   <td>
@@ -139,15 +139,15 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:name4 , params[:name4], style: 'width:200px') %></td>
+  <%= text_field_tag(:name4 , params[:name4], style: 'width:200px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:align4 , options_for_select(alignment_array,params[:align4]),style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:pwr4, params[:pwr4], style: 'width:30px') %></td>
+  <%= text_field_tag(:pwr4, params[:pwr4], style: 'width:30px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:attack4, params[:attack4], style: 'width:50px') %></td>
+  <%= text_field_tag(:attack4, params[:attack4], style: 'width:50px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:defense4, params[:defense4], style: 'width:50px') %></td>
+  <%= text_field_tag(:defense4, params[:defense4], style: 'width:50px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:abil_adj4 , options_for_select(adj_array,params[:abil_adj4]),style: 'width:115px') %></td>
   <td>
@@ -161,15 +161,15 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:name5 , params[:name5], style: 'width:200px') %></td>
+  <%= text_field_tag(:name5 , params[:name5], style: 'width:200px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:align5 , options_for_select(alignment_array,params[:align5]), style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:pwr5, params[:pwr5], style: 'width:30px') %></td>
+  <%= text_field_tag(:pwr5, params[:pwr5], style: 'width:30px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:attack5, params[:attack5], style: 'width:50px') %></td>
+  <%= text_field_tag(:attack5, params[:attack5], style: 'width:50px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:defense5, params[:defense5], style: 'width:50px') %></td>
+  <%= text_field_tag(:defense5, params[:defense5], style: 'width:50px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:abil_adj5 , options_for_select(adj_array,params[:abil_adj5]),style: 'width:115px') %></td>
   <td>
@@ -183,15 +183,15 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:name6, params[:name6], style: 'width:200px') %></td>
+  <%= text_field_tag(:name6, params[:name6], style: 'width:200px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:align6, options_for_select(alignment_array,params[:align6]), style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:pwr6, params[:pwr6], style: 'width:30px') %></td>
+  <%= text_field_tag(:pwr6, params[:pwr6], style: 'width:30px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:attack6, params[:attack6], style: 'width:50px') %></td>
+  <%= text_field_tag(:attack6, params[:attack6], style: 'width:50px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:defense6, params[:defense6], style: 'width:50px') %></td>
+  <%= text_field_tag(:defense6, params[:defense6], style: 'width:50px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:abil_adj6, options_for_select(adj_array,params[:abil_adj6]),style: 'width:115px') %></td>
   <td>
@@ -205,15 +205,15 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:name7, params[:name7], style: 'width:200px') %></td>
+  <%= text_field_tag(:name7, params[:name7], style: 'width:200px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:align7, options_for_select(alignment_array,params[:align7]), style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:pwr7, params[:pwr7], style: 'width:30px') %></td>
+  <%= text_field_tag(:pwr7, params[:pwr7], style: 'width:30px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:attack7, params[:attack7], style: 'width:50px') %></td>
+  <%= text_field_tag(:attack7, params[:attack7], style: 'width:50px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:defense7, params[:defense7], style: 'width:50px') %></td>
+  <%= text_field_tag(:defense7, params[:defense7], style: 'width:50px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:abil_adj7, options_for_select(adj_array,params[:abil_adj7]),style: 'width:115px') %></td>
   <td>

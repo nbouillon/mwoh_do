@@ -1,8 +1,8 @@
 <% provide(:title, 'Optimizer (Beta)') %>
 <% alignment_array = ["BRU","SPD","TAC"] %>
-<% usage_array = ["None","Low","Relatively Low","Average","Relatively High","High"] %>
-<% adj_array = ["None",'Partially','Notably','Remarkably','Significantly','Extremely'] %>
-<% effect_array = ["None","Increase","Decrease"] %>
+<% usage_array = [["None",0],["Low",1],["Relatively Low",2],["Average",3],["Relatively High",4],["High",5]] %>
+<% adj_array = [["None",0],['Partially',1],['Notably',2],['Remarkably',3],['Significantly',4],['Extremely',5]] %>
+<% effect_array = [["None",0],["Increase",1],["Decrease",2]] %>
 <% who_array = ["None","Bruisers","Speeds","Tactics","Self","All"] %>
 <% what_array = ["None","ATK","DEF","ATK/DEF"] %>
 
@@ -38,15 +38,15 @@
 <%= form_tag("/optimize", :method => "get") do %>
 <tr>
   <td><%= label_tag(:name, "Name") %>
-  <%= text_field_tag(:name , "Card1", style: 'width:200px') %></td>
+  <%= text_field_tag(:name , "Card1", style: 'width:200px', maxlength: 30) %></td>
   <td><%= label_tag(:name, "Alignment") %>
   <%= select_tag(:align , options_for_select(alignment_array), style: 'width:70px') %></td>
   <td><%= label_tag(:pwr, "PWR") %>
-  <%= text_field_tag(:pwr, nil, style: 'width:30px') %></td>
+  <%= text_field_tag(:pwr, nil, style: 'width:30px', maxlength: 2) %></td>
   <td><%= label_tag(:attack, "ATK") %>
-  <%= text_field_tag(:attack, "1000", style: 'width:50px') %></td>
+  <%= text_field_tag(:attack, "1000", style: 'width:50px', maxlength: 5) %></td>
   <td><%= label_tag(:defense, "DEF") %>
-  <%= text_field_tag(:defense, nil, style: 'width:50px') %></td>
+  <%= text_field_tag(:defense, nil, style: 'width:50px', maxlength: 5) %></td>
   <td><%= label_tag(:abil_adj, "Ability Adjective") %>
   <%= select_tag(:abil_adj , options_for_select(adj_array),style: 'width:115px') %></td>
   <td><%= label_tag(:abil_effect, "Ability Effect") %>
@@ -60,15 +60,15 @@
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:name2 , "Card2", style: 'width:200px') %></td>
+  <%= text_field_tag(:name2 , "Card2", style: 'width:200px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:align2 , options_for_select(alignment_array), style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:pwr2, nil, style: 'width:30px') %></td>
+  <%= text_field_tag(:pwr2, nil, style: 'width:30px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:attack2, "1500", style: 'width:50px') %></td>
+  <%= text_field_tag(:attack2, "1500", style: 'width:50px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:defense2, nil, style: 'width:50px') %></td>
+  <%= text_field_tag(:defense2, nil, style: 'width:50px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:abil_adj2 , options_for_select(adj_array),style: 'width:115px') %></td>
   <td>
@@ -82,15 +82,15 @@
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:name3 , "Card3", style: 'width:200px') %></td>
+  <%= text_field_tag(:name3 , "Card3", style: 'width:200px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:align3 , options_for_select(alignment_array),style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:pwr3, nil, style: 'width:30px') %></td>
+  <%= text_field_tag(:pwr3, nil, style: 'width:30px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:attack3, "1234", style: 'width:50px') %></td>
+  <%= text_field_tag(:attack3, "1234", style: 'width:50px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:defense3, nil, style: 'width:50px') %></td>
+  <%= text_field_tag(:defense3, nil, style: 'width:50px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:abil_adj3 , options_for_select(adj_array),style: 'width:115px') %></td>
   <td>
@@ -104,15 +104,15 @@
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:name4 , "Card4", style: 'width:200px') %></td>
+  <%= text_field_tag(:name4 , "Card4", style: 'width:200px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:align4 , options_for_select(alignment_array),style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:pwr4, nil, style: 'width:30px') %></td>
+  <%= text_field_tag(:pwr4, nil, style: 'width:30px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:attack4, "5555", style: 'width:50px') %></td>
+  <%= text_field_tag(:attack4, "5555", style: 'width:50px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:defense4, nil, style: 'width:50px') %></td>
+  <%= text_field_tag(:defense4, nil, style: 'width:50px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:abil_adj4 , options_for_select(adj_array),style: 'width:115px') %></td>
   <td>
@@ -126,15 +126,15 @@
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:name5 , "Card5", style: 'width:200px') %></td>
+  <%= text_field_tag(:name5 , "Card5", style: 'width:200px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:align5 , options_for_select(alignment_array), style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:pwr5, nil, style: 'width:30px') %></td>
+  <%= text_field_tag(:pwr5, nil, style: 'width:30px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:attack5, "2100", style: 'width:50px') %></td>
+  <%= text_field_tag(:attack5, "2100", style: 'width:50px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:defense5, nil, style: 'width:50px') %></td>
+  <%= text_field_tag(:defense5, nil, style: 'width:50px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:abil_adj5 , options_for_select(adj_array),style: 'width:115px') %></td>
   <td>
@@ -148,15 +148,15 @@
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:name6, nil, style: 'width:200px') %></td>
+  <%= text_field_tag(:name6, nil, style: 'width:200px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:align6, options_for_select(alignment_array), style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:pwr6, nil, style: 'width:30px') %></td>
+  <%= text_field_tag(:pwr6, nil, style: 'width:30px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:attack6, nil, style: 'width:50px') %></td>
+  <%= text_field_tag(:attack6, nil, style: 'width:50px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:defense6, nil, style: 'width:50px') %></td>
+  <%= text_field_tag(:defense6, nil, style: 'width:50px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:abil_adj6, options_for_select(adj_array),style: 'width:115px') %></td>
   <td>
@@ -170,15 +170,15 @@
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:name7, nil, style: 'width:200px') %></td>
+  <%= text_field_tag(:name7, nil, style: 'width:200px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:align7, options_for_select(alignment_array), style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:pwr7, nil, style: 'width:30px') %></td>
+  <%= text_field_tag(:pwr7, nil, style: 'width:30px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:attack7, nil, style: 'width:50px') %></td>
+  <%= text_field_tag(:attack7, nil, style: 'width:50px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:defense7, nil, style: 'width:50px') %></td>
+  <%= text_field_tag(:defense7, nil, style: 'width:50px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:abil_adj7, options_for_select(adj_array),style: 'width:115px') %></td>
   <td>

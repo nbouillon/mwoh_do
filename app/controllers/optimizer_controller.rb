@@ -25,48 +25,48 @@ class OptimizerController < ApplicationController
       temp_adj = params[:abil_adj]
       temp_usage = params[:usage]
 
-      if temp_effect == "Increase"
+      if temp_effect == "1"
         if temp_what == "ATK"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 24.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 36.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 48.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 60.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 8.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 16.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 20.0
             else
               newcard['a_pct'] = 0.0
@@ -76,43 +76,43 @@ class OptimizerController < ApplicationController
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 24.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 36.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 48.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 60.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 8.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 16.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 20.0
             else
               newcard['a_pct'] = 0.0
@@ -122,43 +122,43 @@ class OptimizerController < ApplicationController
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 10.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 20.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 30.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 40.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 50.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 2.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 7.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 12.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
@@ -192,48 +192,48 @@ class OptimizerController < ApplicationController
       temp_adj = params[:abil_adj2]
       temp_usage = params[:usage2]
 
-      if temp_effect == "Increase"
+      if temp_effect == "1"
         if temp_what == "ATK"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 24.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 36.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 48.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 60.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 8.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 16.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 20.0
             else
               newcard['a_pct'] = 0.0
@@ -243,43 +243,43 @@ class OptimizerController < ApplicationController
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 24.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 36.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 48.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 60.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 8.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 16.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 20.0
             else
               newcard['a_pct'] = 0.0
@@ -289,43 +289,43 @@ class OptimizerController < ApplicationController
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 10.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 20.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 30.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 40.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 50.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 2.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 7.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 12.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
@@ -359,48 +359,48 @@ class OptimizerController < ApplicationController
       temp_adj = params[:abil_adj3]
       temp_usage = params[:usage3]
 
-      if temp_effect == "Increase"
+      if temp_effect == "1"
         if temp_what == "ATK"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 24.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 36.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 48.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 60.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 8.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 16.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 20.0
             else
               newcard['a_pct'] = 0.0
@@ -410,43 +410,43 @@ class OptimizerController < ApplicationController
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 24.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 36.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 48.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 60.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 8.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 16.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 20.0
             else
               newcard['a_pct'] = 0.0
@@ -456,43 +456,43 @@ class OptimizerController < ApplicationController
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 10.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 20.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 30.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 40.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 50.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 2.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 7.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 12.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
@@ -526,48 +526,48 @@ class OptimizerController < ApplicationController
       temp_adj = params[:abil_adj4]
       temp_usage = params[:usage4]
 
-      if temp_effect == "Increase"
+      if temp_effect == "1"
         if temp_what == "ATK"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 24.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 36.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 48.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 60.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 8.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 16.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 20.0
             else
               newcard['a_pct'] = 0.0
@@ -577,43 +577,43 @@ class OptimizerController < ApplicationController
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 24.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 36.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 48.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 60.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 8.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 16.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 20.0
             else
               newcard['a_pct'] = 0.0
@@ -623,43 +623,43 @@ class OptimizerController < ApplicationController
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 10.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 20.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 30.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 40.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 50.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 2.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 7.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 12.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
@@ -693,48 +693,48 @@ class OptimizerController < ApplicationController
       temp_adj = params[:abil_adj5]
       temp_usage = params[:usage5]
 
-      if temp_effect == "Increase"
+      if temp_effect == "1"
         if temp_what == "ATK"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 24.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 36.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 48.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 60.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 8.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 16.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 20.0
             else
               newcard['a_pct'] = 0.0
@@ -744,43 +744,43 @@ class OptimizerController < ApplicationController
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 24.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 36.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 48.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 60.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 8.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 16.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 20.0
             else
               newcard['a_pct'] = 0.0
@@ -790,43 +790,43 @@ class OptimizerController < ApplicationController
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 10.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 20.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 30.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 40.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 50.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 2.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 7.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 12.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
@@ -860,48 +860,48 @@ class OptimizerController < ApplicationController
       temp_adj = params[:abil_adj6]
       temp_usage = params[:usage6]
 
-      if temp_effect == "Increase"
+      if temp_effect == "1"
         if temp_what == "ATK"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 24.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 36.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 48.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 60.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 8.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 16.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 20.0
             else
               newcard['a_pct'] = 0.0
@@ -911,43 +911,43 @@ class OptimizerController < ApplicationController
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 24.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 36.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 48.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 60.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 8.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 16.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 20.0
             else
               newcard['a_pct'] = 0.0
@@ -957,43 +957,43 @@ class OptimizerController < ApplicationController
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 10.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 20.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 30.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 40.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 50.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 2.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 7.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 12.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
@@ -1027,48 +1027,48 @@ class OptimizerController < ApplicationController
       temp_adj = params[:abil_adj7]
       temp_usage = params[:usage7]
 
-      if temp_effect == "Increase"
+      if temp_effect == "1"
         if temp_what == "ATK"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 24.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 36.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 48.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 60.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 8.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 16.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 20.0
             else
               newcard['a_pct'] = 0.0
@@ -1078,43 +1078,43 @@ class OptimizerController < ApplicationController
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 24.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 36.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 48.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 60.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 8.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 16.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 20.0
             else
               newcard['a_pct'] = 0.0
@@ -1124,43 +1124,43 @@ class OptimizerController < ApplicationController
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 10.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 20.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 30.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 40.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 50.0
             else
               newcard['a_pct'] = 0.0
             end
           elsif temp_who == "All"
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 2.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 4.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 7.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 12.0
             else
               newcard['a_pct'] = 0.0
             end
           else
-            if temp_adj == "Partially"
+            if temp_adj == "1"
               newcard['a_pct'] = 3.0
-            elsif temp_adj == "Notably"
+            elsif temp_adj == "2"
               newcard['a_pct'] = 6.0
-            elsif temp_adj == "Remarkably"
+            elsif temp_adj == "3"
               newcard['a_pct'] = 9.0
-            elsif temp_adj == "Significantly"
+            elsif temp_adj == "4"
               newcard['a_pct'] = 12.0
-            elsif temp_adj == "Extremely"
+            elsif temp_adj == "5"
               newcard['a_pct'] = 16.0
             else
               newcard['a_pct'] = 0.0
@@ -1262,11 +1262,11 @@ class OptimizerController < ApplicationController
               
               #Avg_atk experiment
               if cards[0]['boost_atk'] == 'Yes'
-                if cards[0]['a_usage'] == 'Average'
+                if cards[0]['a_usage'] == '3'
                   multiplier = 0.55
-                elsif cards[0]['a_usage'] == 'Relatively High'
+                elsif cards[0]['a_usage'] == '4'
                   multiplier = 0.68
-                elsif cards[0]['a_usage'] == 'High'
+                elsif cards[0]['a_usage'] == '5'
                   multiplier = 0.75
                 else
                   multiplier = 0.35
@@ -1304,11 +1304,11 @@ class OptimizerController < ApplicationController
                   
               for i in 1...5
                 if cards[i]['boost_atk'] == 'Yes'
-                  if cards[i]['a_usage'] == 'Average'
+                  if cards[i]['a_usage'] == '3'
                     multiplier = 0.50
-                  elsif cards[i]['a_usage'] == 'Relatively High'
+                  elsif cards[i]['a_usage'] == '4'
                     multiplier = 0.66
-                  elsif cards[i]['a_usage'] == 'High'
+                  elsif cards[i]['a_usage'] == '5'
                     multiplier = 0.75
                   else
                     multiplier = 0.33
