@@ -4,29 +4,29 @@ class OptimizerController < ApplicationController
   end
 
   def test
-    @pwr = [params[:pwr],params[:pwr2],params[:pwr3],params[:pwr4],params[:pwr5]]
-  	@name = params[:name]
-  	@align = params[:align]
+    @pwr = [params[:p],params[:p2],params[:p3],params[:p4],params[:p5]]
+  	@name = params[:n]
+  	@align = params[:an]
     bob = @pwr[0].to_i + @pwr[1].to_i + @pwr[2].to_i + @pwr[3].to_i + @pwr[4].to_i
   	@pwr_tot = bob
   	
     cardlist = []
 
-    if params[:name] != ""
+    if params[:n] != ""
       newcard = {}
-      newcard['name'] = params[:name]
-      newcard['origin'] = params[:align]
-      newcard['pwr'] = params[:pwr].to_i
-      newcard['atk'] = params[:attack].to_i
-      newcard['def'] = params[:defense].to_i
-      temp_effect = params[:abil_effect]
-      temp_what = params[:abil_what]
-      temp_who = params[:abil_who]
-      temp_adj = params[:abil_adj]
-      temp_usage = params[:usage]
+      newcard['name'] = params[:n]
+      newcard['origin'] = params[:an]
+      newcard['pwr'] = params[:p].to_i
+      newcard['atk'] = params[:ak].to_i
+      newcard['def'] = params[:d].to_i
+      temp_effect = params[:a_e]
+      temp_what = params[:a_wt]
+      temp_who = params[:a_wo]
+      temp_adj = params[:a_a]
+      temp_usage = params[:u]
 
       if temp_effect == "1"
-        if temp_what == "ATK"
+        if temp_what == "1"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
           if temp_who == "Self"
@@ -72,7 +72,7 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "DEF"
+        elsif temp_what == "2"
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
@@ -118,7 +118,7 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "ATK/DEF"
+        elsif temp_what == "3"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
@@ -179,21 +179,21 @@ class OptimizerController < ApplicationController
       cardlist.append(newcard)
     end
 
-    if params[:name2] != ""
+    if params[:n2] != ""
       newcard = {}
-      newcard['name'] = params[:name2]
-      newcard['origin'] = params[:align2]
-      newcard['pwr'] = params[:pwr2].to_i
-      newcard['atk'] = params[:attack2].to_i
-      newcard['def'] = params[:defense2].to_i
-      temp_effect = params[:abil_effect2]
-      temp_what = params[:abil_what2]
-      temp_who = params[:abil_who2]
-      temp_adj = params[:abil_adj2]
-      temp_usage = params[:usage2]
+      newcard['name'] = params[:n2]
+      newcard['origin'] = params[:an2]
+      newcard['pwr'] = params[:p2].to_i
+      newcard['atk'] = params[:ak2].to_i
+      newcard['def'] = params[:d2].to_i
+      temp_effect = params[:a_e2]
+      temp_what = params[:a_wt2]
+      temp_who = params[:a_wo2]
+      temp_adj = params[:a_a2]
+      temp_usage = params[:u2]
 
-      if temp_effect == "1"
-        if temp_what == "ATK"
+      if temp_effect == "1"   #Increase
+        if temp_what == "1"   #ATK
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
           if temp_who == "Self"
@@ -239,7 +239,7 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "DEF"
+        elsif temp_what == "2"
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
@@ -285,7 +285,7 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "ATK/DEF"
+        elsif temp_what == "3"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
@@ -346,21 +346,21 @@ class OptimizerController < ApplicationController
       cardlist.append(newcard)
     end
 
-    if params[:name3] != ""
+    if params[:n3] != ""
       newcard = {}
-      newcard['name'] = params[:name3]
-      newcard['origin'] = params[:align3]
-      newcard['pwr'] = params[:pwr3].to_i
-      newcard['atk'] = params[:attack3].to_i
-      newcard['def'] = params[:defense3].to_i
-      temp_effect = params[:abil_effect3]
-      temp_what = params[:abil_what3]
-      temp_who = params[:abil_who3]
-      temp_adj = params[:abil_adj3]
-      temp_usage = params[:usage3]
+      newcard['name'] = params[:n3]
+      newcard['origin'] = params[:an3]
+      newcard['pwr'] = params[:p3].to_i
+      newcard['atk'] = params[:ak3].to_i
+      newcard['def'] = params[:d3].to_i
+      temp_effect = params[:a_e3]
+      temp_what = params[:a_wt3]
+      temp_who = params[:a_wo3]
+      temp_adj = params[:a_a3]
+      temp_usage = params[:u3]
 
       if temp_effect == "1"
-        if temp_what == "ATK"
+        if temp_what == "1"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
           if temp_who == "Self"
@@ -406,7 +406,7 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "DEF"
+        elsif temp_what == "2"
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
@@ -452,7 +452,7 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "ATK/DEF"
+        elsif temp_what == "3"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
@@ -513,21 +513,21 @@ class OptimizerController < ApplicationController
       cardlist.append(newcard)
     end
 
-    if params[:name4] != ""
+    if params[:n4] != ""
       newcard = {}
-      newcard['name'] = params[:name4]
-      newcard['origin'] = params[:align4]
-      newcard['pwr'] = params[:pwr4].to_i
-      newcard['atk'] = params[:attack4].to_i
-      newcard['def'] = params[:defense4].to_i
-      temp_effect = params[:abil_effect4]
-      temp_what = params[:abil_what4]
-      temp_who = params[:abil_who4]
-      temp_adj = params[:abil_adj4]
-      temp_usage = params[:usage4]
+      newcard['name'] = params[:n4]
+      newcard['origin'] = params[:an4]
+      newcard['pwr'] = params[:p4].to_i
+      newcard['atk'] = params[:ak4].to_i
+      newcard['def'] = params[:d4].to_i
+      temp_effect = params[:a_e4]
+      temp_what = params[:a_wt4]
+      temp_who = params[:a_wo4]
+      temp_adj = params[:a_a4]
+      temp_usage = params[:u4]
 
       if temp_effect == "1"
-        if temp_what == "ATK"
+        if temp_what == "1"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
           if temp_who == "Self"
@@ -573,7 +573,7 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "DEF"
+        elsif temp_what == "2"
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
@@ -619,7 +619,7 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "ATK/DEF"
+        elsif temp_what == "3"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
@@ -680,21 +680,21 @@ class OptimizerController < ApplicationController
       cardlist.append(newcard)
     end
 
-    if params[:name5] != ""
+    if params[:n5] != ""
       newcard = {}
-      newcard['name'] = params[:name5]
-      newcard['origin'] = params[:align5]
-      newcard['pwr'] = params[:pwr5].to_i
-      newcard['atk'] = params[:attack5].to_i
-      newcard['def'] = params[:defense5].to_i
-      temp_effect = params[:abil_effect5]
-      temp_what = params[:abil_what5]
-      temp_who = params[:abil_who5]
-      temp_adj = params[:abil_adj5]
-      temp_usage = params[:usage5]
+      newcard['name'] = params[:n5]
+      newcard['origin'] = params[:an5]
+      newcard['pwr'] = params[:p5].to_i
+      newcard['atk'] = params[:ak5].to_i
+      newcard['def'] = params[:d5].to_i
+      temp_effect = params[:a_e5]
+      temp_what = params[:a_wt5]
+      temp_who = params[:a_wo5]
+      temp_adj = params[:a_a5]
+      temp_usage = params[:u5]
 
       if temp_effect == "1"
-        if temp_what == "ATK"
+        if temp_what == "1"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
           if temp_who == "Self"
@@ -740,7 +740,7 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "DEF"
+        elsif temp_what == "2"
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
@@ -786,7 +786,7 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "ATK/DEF"
+        elsif temp_what == "3"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
@@ -847,21 +847,21 @@ class OptimizerController < ApplicationController
       cardlist.append(newcard)
     end
 
-    if params[:name6] != ""
+    if params[:n6] != ""
       newcard = {}
-      newcard['name'] = params[:name6]
-      newcard['origin'] = params[:align6]
-      newcard['pwr'] = params[:pwr6].to_i
-      newcard['atk'] = params[:attack6].to_i
-      newcard['def'] = params[:defense6].to_i
-      temp_effect = params[:abil_effect6]
-      temp_what = params[:abil_what6]
-      temp_who = params[:abil_who6]
-      temp_adj = params[:abil_adj6]
-      temp_usage = params[:usage6]
+      newcard['name'] = params[:n6]
+      newcard['origin'] = params[:an6]
+      newcard['pwr'] = params[:p6].to_i
+      newcard['atk'] = params[:ak6].to_i
+      newcard['def'] = params[:d6].to_i
+      temp_effect = params[:a_e6]
+      temp_what = params[:a_wt6]
+      temp_who = params[:a_wo6]
+      temp_adj = params[:a_a6]
+      temp_usage = params[:u6]
 
       if temp_effect == "1"
-        if temp_what == "ATK"
+        if temp_what == "1"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
           if temp_who == "Self"
@@ -907,7 +907,7 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "DEF"
+        elsif temp_what == "2"
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
@@ -953,7 +953,7 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "ATK/DEF"
+        elsif temp_what == "3"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
@@ -1014,21 +1014,21 @@ class OptimizerController < ApplicationController
       cardlist.append(newcard)
     end
 
-    if params[:name7] != ""
+    if params[:n7] != ""
       newcard = {}
-      newcard['name'] = params[:name7]
-      newcard['origin'] = params[:align7]
-      newcard['pwr'] = params[:pwr7].to_i
-      newcard['atk'] = params[:attack7].to_i
-      newcard['def'] = params[:defense7].to_i
-      temp_effect = params[:abil_effect7]
-      temp_what = params[:abil_what7]
-      temp_who = params[:abil_who7]
-      temp_adj = params[:abil_adj7]
-      temp_usage = params[:usage7]
+      newcard['name'] = params[:n7]
+      newcard['origin'] = params[:an7]
+      newcard['pwr'] = params[:p7].to_i
+      newcard['atk'] = params[:ak7].to_i
+      newcard['def'] = params[:d7].to_i
+      temp_effect = params[:a_e7]
+      temp_what = params[:a_wt7]
+      temp_who = params[:a_wo7]
+      temp_adj = params[:a_a7]
+      temp_usage = params[:u7]
 
       if temp_effect == "1"
-        if temp_what == "ATK"
+        if temp_what == "1"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
           if temp_who == "Self"
@@ -1074,7 +1074,7 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "DEF"
+        elsif temp_what == "2"
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
@@ -1120,7 +1120,7 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "ATK/DEF"
+        elsif temp_what == "3"
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
           if temp_who == "Self"
@@ -1191,6 +1191,8 @@ class OptimizerController < ApplicationController
 
     best_atk_cards = []
     best_base_atk = 0
+    best_adp_bonus = 0
+    best_al_bonus = 0
     best_pre_atk = 0
     best_avg_atk = 0
 
@@ -1214,47 +1216,69 @@ class OptimizerController < ApplicationController
               base_atk = card_atk[0] + card_atk[1] + card_atk[2] + card_atk[3] + card_atk[4]
 
               #Adapter Bonus
-              card_atk[0] = (card_atk[0] * 1.05).round
-              
-              card_atk[1] = (card_atk[1] * 1.05).round
-              if(cards[1]['origin'] == cards[0]['origin'])
-                card_atk[1] = card_atk[1] + (cards[0]['atk'] * 0.05).round
+              if params[:adp] == "1"
+                card_atk[0] = (card_atk[0] * 1.05).round
+                
+                card_atk[1] = (card_atk[1] * 1.05).round
+                if(cards[1]['origin'] == cards[0]['origin'])
+                  card_atk[1] = card_atk[1] + (cards[0]['atk'] * 0.05).round
+                end
+                
+                card_atk[2] = (card_atk[2] * 1.05).round
+                if(cards[2]['origin'] == cards[0]['origin'])
+                  card_atk[2] = card_atk[2] + (cards[0]['atk'] * 0.05).round
+                end
+                if(cards[2]['origin'] == cards[1]['origin'])
+                  card_atk[2] = card_atk[2] + (cards[1]['atk'] * 0.05).round
+                end
+                
+                card_atk[3] = (card_atk[3] * 1.05).round
+                if(cards[3]['origin'] == cards[0]['origin'])
+                  card_atk[3] = card_atk[3] + (cards[0]['atk'] * 0.05).round
+                end
+                if(cards[3]['origin'] == cards[1]['origin'])
+                  card_atk[3] = card_atk[3] + (cards[1]['atk'] * 0.05).round
+                end
+                if(cards[3]['origin'] == cards[2]['origin'])
+                  card_atk[3] = card_atk[3] + (cards[2]['atk'] * 0.05).round
+                end
+                
+                card_atk[4] = (card_atk[4] * 1.05).round
+                if(cards[4]['origin'] == cards[0]['origin'])
+                  card_atk[4] = card_atk[4] + (cards[0]['atk'] * 0.05).round
+                end
+                if(cards[4]['origin'] == cards[1]['origin'])
+                  card_atk[4] = card_atk[4] + (cards[1]['atk'] * 0.05).round
+                end
+                if(cards[4]['origin'] == cards[2]['origin'])
+                  card_atk[4] = card_atk[4] + (cards[2]['atk'] * 0.05).round
+                end
+                if(cards[4]['origin'] == cards[3]['origin'])
+                  card_atk[4] = card_atk[4] + (cards[3]['atk'] * 0.05).round
+                end
               end
-              
-              card_atk[2] = (card_atk[2] * 1.05).round
-              if(cards[2]['origin'] == cards[0]['origin'])
-                card_atk[2] = card_atk[2] + (cards[0]['atk'] * 0.05).round
+
+              post_adp_atk = card_atk[0] + card_atk[1] + card_atk[2] + card_atk[3] + card_atk[4]
+
+              temp_adp_bonus = post_adp_atk - base_atk
+
+              if params[:al] == "1" or params[:al] == "3"
+                al_mult = 1.10
+              elsif params[:al] == "2"
+                al_mult = 1.05
+              else
+                al_mult = 1
               end
-              if(cards[2]['origin'] == cards[1]['origin'])
-                card_atk[2] = card_atk[2] + (cards[1]['atk'] * 0.05).round
-              end
-              
-              card_atk[3] = (card_atk[3] * 1.05).round
-              if(cards[3]['origin'] == cards[0]['origin'])
-                card_atk[3] = card_atk[3] + (cards[0]['atk'] * 0.05).round
-              end
-              if(cards[3]['origin'] == cards[1]['origin'])
-                card_atk[3] = card_atk[3] + (cards[1]['atk'] * 0.05).round
-              end
-              if(cards[3]['origin'] == cards[2]['origin'])
-                card_atk[3] = card_atk[3] + (cards[2]['atk'] * 0.05).round
-              end
-              
-              card_atk[4] = (card_atk[4] * 1.05).round
-              if(cards[4]['origin'] == cards[0]['origin'])
-                card_atk[4] = card_atk[4] + (cards[0]['atk'] * 0.05).round
-              end
-              if(cards[4]['origin'] == cards[1]['origin'])
-                card_atk[4] = card_atk[4] + (cards[1]['atk'] * 0.05).round
-              end
-              if(cards[4]['origin'] == cards[2]['origin'])
-                card_atk[4] = card_atk[4] + (cards[2]['atk'] * 0.05).round
-              end
-              if(cards[4]['origin'] == cards[3]['origin'])
-                card_atk[4] = card_atk[4] + (cards[3]['atk'] * 0.05).round
-              end
+
+              card_atk[0] = (card_atk[0] * al_mult).round
+              card_atk[1] = (card_atk[1] * al_mult).round
+              card_atk[2] = (card_atk[2] * al_mult).round
+              card_atk[3] = (card_atk[3] * al_mult).round
+              card_atk[4] = (card_atk[4] * al_mult).round
               
               pre_proc_atk = card_atk[0] + card_atk[1] + card_atk[2] + card_atk[3] + card_atk[4]
+
+              temp_al_bonus = pre_proc_atk - post_adp_atk
               
               pre_proc_atks = [card_atk[0],card_atk[1],card_atk[2],card_atk[3],card_atk[4]]
               
@@ -1352,6 +1376,8 @@ class OptimizerController < ApplicationController
               
               if avg_atk2_total > best_avg_atk
                 best_base_atk = base_atk
+                best_adp_bonus = temp_adp_bonus
+                best_al_bonus = temp_al_bonus
                 best_pre_atk = pre_proc_atk
                 best_avg_atk = avg_atk2_total.round
                 best_atk_cards[0] = cards[0]
@@ -1375,6 +1401,8 @@ class OptimizerController < ApplicationController
     @num = numcards
 
     @base = best_base_atk
+    @adp = best_adp_bonus
+    @al = best_al_bonus
     @pre = best_pre_atk
     @avg = best_avg_atk
 
