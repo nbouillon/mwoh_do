@@ -13,7 +13,7 @@
 	<tr>
 		<td>
 <h1>Results (Beta)</h1>
-Based upon the <%= @num %> cards you entered, the following is the deck (in optimal order) that has the highest average attack.
+Based upon the <%= @num %> cards you entered, the following is the deck (in optimal order) that has the highest effective attack.
 <br><br>
 <b>Best deck position 1 (Middle):</b> <%= @best1['name'] %><br>
 <b>Best deck position 2:</b> <%= @best2['name'] %><br>
@@ -28,7 +28,8 @@ Based upon the <%= @num %> cards you entered, the following is the deck (in opti
   <b>Scrapper Bonus:</b> <%= @sc %><br>
 <% end %>
 <b>Pre-Abilities Attack:</b> <%= @pre %><br>
-<b>Average Total Attack:</b> <%= @avg %><br>
+<b>Average Total Attack:</b> <%= @avg %><br><br>
+<b>Average Effective Attack:</b> <%= @eff %> (this converts universal degrades into an attack boost) <br>
 <br>
 <b>TIP! - Bookmark this page to save the cards you've entered for next time</b>
 

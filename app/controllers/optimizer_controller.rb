@@ -25,10 +25,11 @@ class OptimizerController < ApplicationController
       temp_adj = params[:a_a]
       temp_usage = params[:u]
 
-      if temp_effect == "1"
-        if temp_what == "1"
+      if temp_effect == "1"   #Increase
+        if temp_what == "1"   #ATK only
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 12.0
@@ -72,9 +73,10 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "2"
+        elsif temp_what == "2"    #DEF only
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 12.0
@@ -118,9 +120,10 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "3"
+        elsif temp_what == "3"    #ATK/DEF
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 10.0
@@ -169,9 +172,57 @@ class OptimizerController < ApplicationController
           newcard['boost_def'] = "No"
           newcard['a_pct'] = 0.0
         end
+      elsif temp_effect == "2"  #Decrease
+        newcard['boost_atk'] = "No"
+        newcard['boost_def'] = "No"
+        if temp_what == "2"     #DEF only
+          if temp_who == "All"
+            newcard['debuff_all'] = "Yes"
+            if temp_adj == "1"  #Partially
+              newcard['a_pct'] = 3.0
+            elsif temp_adj == "2"   #Notably
+              newcard['a_pct'] = 6.0
+            elsif temp_adj == "3"   #Remarkably
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "4"   #Significantly
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "5"   #Extremely
+              newcard['a_pct'] = 16.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            newcard['debuff_all'] = "No"
+            newcard['a_pct'] = 0.0
+          end
+        elsif temp_what == "3"    #ATK/DEF
+          if temp_who == "All"
+            newcard['debuff_all'] = "Yes"
+            if temp_adj == "1"  #Partially
+              newcard['a_pct'] = 2.0
+            elsif temp_adj == "2"   #Notably
+              newcard['a_pct'] = 4.0
+            elsif temp_adj == "3"   #Remarkably
+              newcard['a_pct'] = 7.0
+            elsif temp_adj == "4"   #Significantly
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "5"   #Extremely
+              newcard['a_pct'] = 12.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            newcard['debuff_all'] = "No"
+            newcard['a_pct'] = 0.0
+          end
+        else
+          newcard['debuff_all'] = "No"
+          newcard['a_pct'] = 0.0
+        end
       else
         newcard['boost_atk'] = "No"
         newcard['boost_def'] = "No"
+        newcard['debuff_all'] = "No"
         newcard['a_pct'] = 0.0
       end
       newcard['a_who'] = temp_who
@@ -193,9 +244,10 @@ class OptimizerController < ApplicationController
       temp_usage = params[:u2]
 
       if temp_effect == "1"   #Increase
-        if temp_what == "1"   #ATK
+        if temp_what == "1"   #ATK only
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 12.0
@@ -239,9 +291,10 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "2"
+        elsif temp_what == "2"    #DEF only
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 12.0
@@ -285,9 +338,10 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "3"
+        elsif temp_what == "3"    #ATK/DEF
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 10.0
@@ -336,9 +390,57 @@ class OptimizerController < ApplicationController
           newcard['boost_def'] = "No"
           newcard['a_pct'] = 0.0
         end
+      elsif temp_effect == "2"  #Decrease
+        newcard['boost_atk'] = "No"
+        newcard['boost_def'] = "No"
+        if temp_what == "2"     #DEF only
+          if temp_who == "All"
+            newcard['debuff_all'] = "Yes"
+            if temp_adj == "1"  #Partially
+              newcard['a_pct'] = 3.0
+            elsif temp_adj == "2"   #Notably
+              newcard['a_pct'] = 6.0
+            elsif temp_adj == "3"   #Remarkably
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "4"   #Significantly
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "5"   #Extremely
+              newcard['a_pct'] = 16.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            newcard['debuff_all'] = "No"
+            newcard['a_pct'] = 0.0
+          end
+        elsif temp_what == "3"    #ATK/DEF
+          if temp_who == "All"
+            newcard['debuff_all'] = "Yes"
+            if temp_adj == "1"  #Partially
+              newcard['a_pct'] = 2.0
+            elsif temp_adj == "2"   #Notably
+              newcard['a_pct'] = 4.0
+            elsif temp_adj == "3"   #Remarkably
+              newcard['a_pct'] = 7.0
+            elsif temp_adj == "4"   #Significantly
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "5"   #Extremely
+              newcard['a_pct'] = 12.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            newcard['debuff_all'] = "No"
+            newcard['a_pct'] = 0.0
+          end
+        else
+          newcard['debuff_all'] = "No"
+          newcard['a_pct'] = 0.0
+        end
       else
         newcard['boost_atk'] = "No"
         newcard['boost_def'] = "No"
+        newcard['debuff_all'] = "No"
         newcard['a_pct'] = 0.0
       end
       newcard['a_who'] = temp_who
@@ -359,10 +461,11 @@ class OptimizerController < ApplicationController
       temp_adj = params[:a_a3]
       temp_usage = params[:u3]
 
-      if temp_effect == "1"
-        if temp_what == "1"
+      if temp_effect == "1"   #Increase
+        if temp_what == "1"   #ATK only
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 12.0
@@ -406,9 +509,10 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "2"
+        elsif temp_what == "2"    #DEF only
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 12.0
@@ -452,9 +556,10 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "3"
+        elsif temp_what == "3"    #ATK/DEF
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 10.0
@@ -503,9 +608,57 @@ class OptimizerController < ApplicationController
           newcard['boost_def'] = "No"
           newcard['a_pct'] = 0.0
         end
+      elsif temp_effect == "2"  #Decrease
+        newcard['boost_atk'] = "No"
+        newcard['boost_def'] = "No"
+        if temp_what == "2"     #DEF only
+          if temp_who == "All"
+            newcard['debuff_all'] = "Yes"
+            if temp_adj == "1"  #Partially
+              newcard['a_pct'] = 3.0
+            elsif temp_adj == "2"   #Notably
+              newcard['a_pct'] = 6.0
+            elsif temp_adj == "3"   #Remarkably
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "4"   #Significantly
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "5"   #Extremely
+              newcard['a_pct'] = 16.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            newcard['debuff_all'] = "No"
+            newcard['a_pct'] = 0.0
+          end
+        elsif temp_what == "3"    #ATK/DEF
+          if temp_who == "All"
+            newcard['debuff_all'] = "Yes"
+            if temp_adj == "1"  #Partially
+              newcard['a_pct'] = 2.0
+            elsif temp_adj == "2"   #Notably
+              newcard['a_pct'] = 4.0
+            elsif temp_adj == "3"   #Remarkably
+              newcard['a_pct'] = 7.0
+            elsif temp_adj == "4"   #Significantly
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "5"   #Extremely
+              newcard['a_pct'] = 12.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            newcard['debuff_all'] = "No"
+            newcard['a_pct'] = 0.0
+          end
+        else
+          newcard['debuff_all'] = "No"
+          newcard['a_pct'] = 0.0
+        end
       else
         newcard['boost_atk'] = "No"
         newcard['boost_def'] = "No"
+        newcard['debuff_all'] = "No"
         newcard['a_pct'] = 0.0
       end
       newcard['a_who'] = temp_who
@@ -526,10 +679,11 @@ class OptimizerController < ApplicationController
       temp_adj = params[:a_a4]
       temp_usage = params[:u4]
 
-      if temp_effect == "1"
-        if temp_what == "1"
+      if temp_effect == "1"   #Increase
+        if temp_what == "1"   #ATK only
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 12.0
@@ -573,9 +727,10 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "2"
+        elsif temp_what == "2"    #DEF only
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 12.0
@@ -619,9 +774,10 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "3"
+        elsif temp_what == "3"    #ATK/DEF
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 10.0
@@ -670,9 +826,57 @@ class OptimizerController < ApplicationController
           newcard['boost_def'] = "No"
           newcard['a_pct'] = 0.0
         end
+      elsif temp_effect == "2"  #Decrease
+        newcard['boost_atk'] = "No"
+        newcard['boost_def'] = "No"
+        if temp_what == "2"     #DEF only
+          if temp_who == "All"
+            newcard['debuff_all'] = "Yes"
+            if temp_adj == "1"  #Partially
+              newcard['a_pct'] = 3.0
+            elsif temp_adj == "2"   #Notably
+              newcard['a_pct'] = 6.0
+            elsif temp_adj == "3"   #Remarkably
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "4"   #Significantly
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "5"   #Extremely
+              newcard['a_pct'] = 16.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            newcard['debuff_all'] = "No"
+            newcard['a_pct'] = 0.0
+          end
+        elsif temp_what == "3"    #ATK/DEF
+          if temp_who == "All"
+            newcard['debuff_all'] = "Yes"
+            if temp_adj == "1"  #Partially
+              newcard['a_pct'] = 2.0
+            elsif temp_adj == "2"   #Notably
+              newcard['a_pct'] = 4.0
+            elsif temp_adj == "3"   #Remarkably
+              newcard['a_pct'] = 7.0
+            elsif temp_adj == "4"   #Significantly
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "5"   #Extremely
+              newcard['a_pct'] = 12.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            newcard['debuff_all'] = "No"
+            newcard['a_pct'] = 0.0
+          end
+        else
+          newcard['debuff_all'] = "No"
+          newcard['a_pct'] = 0.0
+        end
       else
         newcard['boost_atk'] = "No"
         newcard['boost_def'] = "No"
+        newcard['debuff_all'] = "No"
         newcard['a_pct'] = 0.0
       end
       newcard['a_who'] = temp_who
@@ -693,10 +897,11 @@ class OptimizerController < ApplicationController
       temp_adj = params[:a_a5]
       temp_usage = params[:u5]
 
-      if temp_effect == "1"
-        if temp_what == "1"
+      if temp_effect == "1"   #Increase
+        if temp_what == "1"   #ATK only
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 12.0
@@ -740,9 +945,10 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "2"
+        elsif temp_what == "2"    #DEF only
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 12.0
@@ -786,9 +992,10 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "3"
+        elsif temp_what == "3"    #ATK/DEF
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 10.0
@@ -837,9 +1044,57 @@ class OptimizerController < ApplicationController
           newcard['boost_def'] = "No"
           newcard['a_pct'] = 0.0
         end
+      elsif temp_effect == "2"  #Decrease
+        newcard['boost_atk'] = "No"
+        newcard['boost_def'] = "No"
+        if temp_what == "2"     #DEF only
+          if temp_who == "All"
+            newcard['debuff_all'] = "Yes"
+            if temp_adj == "1"  #Partially
+              newcard['a_pct'] = 3.0
+            elsif temp_adj == "2"   #Notably
+              newcard['a_pct'] = 6.0
+            elsif temp_adj == "3"   #Remarkably
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "4"   #Significantly
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "5"   #Extremely
+              newcard['a_pct'] = 16.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            newcard['debuff_all'] = "No"
+            newcard['a_pct'] = 0.0
+          end
+        elsif temp_what == "3"    #ATK/DEF
+          if temp_who == "All"
+            newcard['debuff_all'] = "Yes"
+            if temp_adj == "1"  #Partially
+              newcard['a_pct'] = 2.0
+            elsif temp_adj == "2"   #Notably
+              newcard['a_pct'] = 4.0
+            elsif temp_adj == "3"   #Remarkably
+              newcard['a_pct'] = 7.0
+            elsif temp_adj == "4"   #Significantly
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "5"   #Extremely
+              newcard['a_pct'] = 12.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            newcard['debuff_all'] = "No"
+            newcard['a_pct'] = 0.0
+          end
+        else
+          newcard['debuff_all'] = "No"
+          newcard['a_pct'] = 0.0
+        end
       else
         newcard['boost_atk'] = "No"
         newcard['boost_def'] = "No"
+        newcard['debuff_all'] = "No"
         newcard['a_pct'] = 0.0
       end
       newcard['a_who'] = temp_who
@@ -860,10 +1115,11 @@ class OptimizerController < ApplicationController
       temp_adj = params[:a_a6]
       temp_usage = params[:u6]
 
-      if temp_effect == "1"
-        if temp_what == "1"
+      if temp_effect == "1"   #Increase
+        if temp_what == "1"   #ATK only
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 12.0
@@ -907,9 +1163,10 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "2"
+        elsif temp_what == "2"    #DEF only
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 12.0
@@ -953,9 +1210,10 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "3"
+        elsif temp_what == "3"    #ATK/DEF
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 10.0
@@ -1004,9 +1262,57 @@ class OptimizerController < ApplicationController
           newcard['boost_def'] = "No"
           newcard['a_pct'] = 0.0
         end
+      elsif temp_effect == "2"  #Decrease
+        newcard['boost_atk'] = "No"
+        newcard['boost_def'] = "No"
+        if temp_what == "2"     #DEF only
+          if temp_who == "All"
+            newcard['debuff_all'] = "Yes"
+            if temp_adj == "1"  #Partially
+              newcard['a_pct'] = 3.0
+            elsif temp_adj == "2"   #Notably
+              newcard['a_pct'] = 6.0
+            elsif temp_adj == "3"   #Remarkably
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "4"   #Significantly
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "5"   #Extremely
+              newcard['a_pct'] = 16.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            newcard['debuff_all'] = "No"
+            newcard['a_pct'] = 0.0
+          end
+        elsif temp_what == "3"    #ATK/DEF
+          if temp_who == "All"
+            newcard['debuff_all'] = "Yes"
+            if temp_adj == "1"  #Partially
+              newcard['a_pct'] = 2.0
+            elsif temp_adj == "2"   #Notably
+              newcard['a_pct'] = 4.0
+            elsif temp_adj == "3"   #Remarkably
+              newcard['a_pct'] = 7.0
+            elsif temp_adj == "4"   #Significantly
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "5"   #Extremely
+              newcard['a_pct'] = 12.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            newcard['debuff_all'] = "No"
+            newcard['a_pct'] = 0.0
+          end
+        else
+          newcard['debuff_all'] = "No"
+          newcard['a_pct'] = 0.0
+        end
       else
         newcard['boost_atk'] = "No"
         newcard['boost_def'] = "No"
+        newcard['debuff_all'] = "No"
         newcard['a_pct'] = 0.0
       end
       newcard['a_who'] = temp_who
@@ -1027,10 +1333,11 @@ class OptimizerController < ApplicationController
       temp_adj = params[:a_a7]
       temp_usage = params[:u7]
 
-      if temp_effect == "1"
-        if temp_what == "1"
+      if temp_effect == "1"   #Increase
+        if temp_what == "1"   #ATK only
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "No"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 12.0
@@ -1074,9 +1381,10 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "2"
+        elsif temp_what == "2"    #DEF only
           newcard['boost_atk'] = "No"
           newcard['boost_def'] = "Yes"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 12.0
@@ -1120,9 +1428,10 @@ class OptimizerController < ApplicationController
               newcard['a_pct'] = 0.0
             end
           end
-        elsif temp_what == "3"
+        elsif temp_what == "3"    #ATK/DEF
           newcard['boost_atk'] = "Yes"
           newcard['boost_def'] = "Yes"
+          newcard['debuff_all'] = "No"
           if temp_who == "Self"
             if temp_adj == "1"
               newcard['a_pct'] = 10.0
@@ -1171,9 +1480,57 @@ class OptimizerController < ApplicationController
           newcard['boost_def'] = "No"
           newcard['a_pct'] = 0.0
         end
+      elsif temp_effect == "2"  #Decrease
+        newcard['boost_atk'] = "No"
+        newcard['boost_def'] = "No"
+        if temp_what == "2"     #DEF only
+          if temp_who == "All"
+            newcard['debuff_all'] = "Yes"
+            if temp_adj == "1"  #Partially
+              newcard['a_pct'] = 3.0
+            elsif temp_adj == "2"   #Notably
+              newcard['a_pct'] = 6.0
+            elsif temp_adj == "3"   #Remarkably
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "4"   #Significantly
+              newcard['a_pct'] = 12.0
+            elsif temp_adj == "5"   #Extremely
+              newcard['a_pct'] = 16.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            newcard['debuff_all'] = "No"
+            newcard['a_pct'] = 0.0
+          end
+        elsif temp_what == "3"    #ATK/DEF
+          if temp_who == "All"
+            newcard['debuff_all'] = "Yes"
+            if temp_adj == "1"  #Partially
+              newcard['a_pct'] = 2.0
+            elsif temp_adj == "2"   #Notably
+              newcard['a_pct'] = 4.0
+            elsif temp_adj == "3"   #Remarkably
+              newcard['a_pct'] = 7.0
+            elsif temp_adj == "4"   #Significantly
+              newcard['a_pct'] = 9.0
+            elsif temp_adj == "5"   #Extremely
+              newcard['a_pct'] = 12.0
+            else
+              newcard['a_pct'] = 0.0
+            end
+          else
+            newcard['debuff_all'] = "No"
+            newcard['a_pct'] = 0.0
+          end
+        else
+          newcard['debuff_all'] = "No"
+          newcard['a_pct'] = 0.0
+        end
       else
         newcard['boost_atk'] = "No"
         newcard['boost_def'] = "No"
+        newcard['debuff_all'] = "No"
         newcard['a_pct'] = 0.0
       end
       newcard['a_who'] = temp_who
@@ -1190,6 +1547,7 @@ class OptimizerController < ApplicationController
     end
 
     best_atk_cards = []
+    best_eff_total = 0
     best_base_atk = 0
     best_adp_bonus = 0
     best_al_bonus = 0
@@ -1392,11 +1750,44 @@ class OptimizerController < ApplicationController
               end
                     
               avg_atk2_total = avg_atk2[0] + avg_atk2[1] + avg_atk2[2] + avg_atk2[3] + avg_atk2[4]
+
+              post_debuff_total = avg_atk2_total.round
+
+              #Debuffs
+              for i in 0...5
+                if cards[i]['debuff_all'] == "Yes"
+                  if i == 0
+                    if cards[i]['a_usage'] == '3'
+                      multiplier = 0.55
+                    elsif cards[i]['a_usage'] == '4'
+                      multiplier = 0.68
+                    elsif cards[i]['a_usage'] == '5'
+                      multiplier = 0.75
+                    else
+                      multiplier = 0.33
+                    end
+                  else
+                    if cards[i]['a_usage'] == '3'
+                      multiplier = 0.50
+                    elsif cards[i]['a_usage'] == '4'
+                      multiplier = 0.66
+                    elsif cards[i]['a_usage'] == '5'
+                      multiplier = 0.75
+                    else
+                      multiplier = 0.33
+                    end
+                  end
+                  eff_boost = (1.0 / (1.0 - (cards[i]['a_pct']/100))) - 1
+                  eff_boost = 1 + (multiplier * eff_boost)
+                  post_debuff_total = (post_debuff_total * eff_boost).round
+                end
+              end
               
               #Special Combos
                 #Nothing yet
               
-              if avg_atk2_total > best_avg_atk
+              if post_debuff_total > best_eff_total
+                best_eff_total = post_debuff_total
                 best_base_atk = base_atk
                 best_adp_bonus = temp_adp_bonus
                 best_al_bonus = temp_al_bonus
@@ -1429,6 +1820,7 @@ class OptimizerController < ApplicationController
     @sc = best_sc_bonus
     @pre = best_pre_atk
     @avg = best_avg_atk
+    @eff = best_eff_total
 
     @best1 = best_atk_cards[0]
     @best2 = best_atk_cards[1]
