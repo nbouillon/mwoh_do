@@ -1262,6 +1262,7 @@ class OptimizerController < ApplicationController
 
               temp_adp_bonus = post_adp_atk - base_atk
 
+              #Alliance Position
               if params[:al] == "1" or params[:al] == "3"
                 al_mult = 1.10
               elsif params[:al] == "2"
@@ -1275,10 +1276,31 @@ class OptimizerController < ApplicationController
               card_atk[2] = (card_atk[2] * al_mult).round
               card_atk[3] = (card_atk[3] * al_mult).round
               card_atk[4] = (card_atk[4] * al_mult).round
+
+              post_al_atk =  card_atk[0] + card_atk[1] + card_atk[2] + card_atk[3] + card_atk[4]
+
+              temp_al_bonus = post_al_atk - post_adp_atk
+
+              #Scrapper Bonus
+              if params[:sc] == "1"
+                sc_mult = 1.10
+              elsif params[:sc] == "2"
+                sc_mult = 1.21
+              elsif params[:sc] == "3"
+                sc_mult = 1.30
+              else
+                sc_mult = 1
+              end
+
+              card_atk[0] = (card_atk[0] * sc_mult).round
+              card_atk[1] = (card_atk[1] * sc_mult).round
+              card_atk[2] = (card_atk[2] * sc_mult).round
+              card_atk[3] = (card_atk[3] * sc_mult).round
+              card_atk[4] = (card_atk[4] * sc_mult).round
               
               pre_proc_atk = card_atk[0] + card_atk[1] + card_atk[2] + card_atk[3] + card_atk[4]
 
-              temp_al_bonus = pre_proc_atk - post_adp_atk
+              temp_sc_bonus = pre_proc_atk - post_al_atk
               
               pre_proc_atks = [card_atk[0],card_atk[1],card_atk[2],card_atk[3],card_atk[4]]
               
@@ -1378,6 +1400,7 @@ class OptimizerController < ApplicationController
                 best_base_atk = base_atk
                 best_adp_bonus = temp_adp_bonus
                 best_al_bonus = temp_al_bonus
+                best_sc_bonus = temp_sc_bonus
                 best_pre_atk = pre_proc_atk
                 best_avg_atk = avg_atk2_total.round
                 best_atk_cards[0] = cards[0]
@@ -1403,6 +1426,7 @@ class OptimizerController < ApplicationController
     @base = best_base_atk
     @adp = best_adp_bonus
     @al = best_al_bonus
+    @sc = best_sc_bonus
     @pre = best_pre_atk
     @avg = best_avg_atk
 

@@ -7,6 +7,7 @@
 <% what_array = [["None",0],["ATK",1],["DEF",2],["ATK/DEF",3]] %>
 <% opt_array = [["Attack",0]] %>
 <% alliance_array = [["None",0],["Alliance Leader",1],["Vice-Leader",2],["Offense Leader",3],["Defense Leader",4]] %>
+<% scrapper_array = [["None",0],["10%",1],["21%",2],["30%",3]] %>
 
 <%= render 'layouts/optdesc' %>
 <br>
@@ -167,11 +168,24 @@
   <td>
   <%= select_tag(:u7, options_for_select(usage_array,"3"),style: 'width:135px') %></td>
 </tr></table><br>
-  <%= label_tag(:adp, "Adapter Bonus? (All 3)") %>
-  <%= check_box_tag(:adp,"1",true) %><br><br>
-  <%= label_tag(:al, "Alliance Position") %>
-  <%= select_tag(:al, options_for_select(alliance_array)) %><br>
-  <%= label_tag(:of, "Optimize for") %>
-  <%= select_tag(:of, options_for_select(opt_array)) %><br><br>
+<table>
+  <tr>
+    <td style="width:250px"><%= label_tag(:adp, "Adapter Bonus? (All 3)") %></td>
+    <td><%= check_box_tag(:adp,"1",params[:adp]) %></td>
+  </tr>
+  <tr>
+    <td><%= label_tag(:al, "Alliance Position") %></td>
+    <td><%= select_tag(:al, options_for_select(alliance_array,params[:al])) %></td>
+  </tr>
+  <tr>
+    <td><%= label_tag(:sc, "Scrapper Bonus (Attack only)") %></td>
+    <td><%= select_tag(:sc, options_for_select(scrapper_array,params[:sc])) %></td>
+  </tr>
+  <tr>
+    <td><%= label_tag(:of, "Optimize for") %></td>
+    <td><%= select_tag(:of, options_for_select(opt_array,params[:of])) %></td>
+  </tr>
+</table>
+<br>
   <%= submit_tag("Optimize") %>
 <% end %>

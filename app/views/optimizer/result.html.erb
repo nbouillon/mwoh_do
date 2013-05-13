@@ -7,6 +7,7 @@
 <% what_array = [["None",0],["ATK",1],["DEF",2],["ATK/DEF",3]] %>
 <% opt_array = [["Attack",0]] %>
 <% alliance_array = [["None",0],["Alliance Leader",1],["Vice-Leader",2],["Offense Leader",3],["Defense Leader",4]] %>
+<% scrapper_array = [["None",0],["10%",1],["21%",2],["30%",3]] %>
 
 <table>
 	<tr>
@@ -23,6 +24,9 @@ Based upon the <%= @num %> cards you entered, the following is the deck (in opti
 <b>Base Attack:</b> <%= @base %><br>
 <b>Adapter Bonus:</b> <%= @adp %><br>
 <b>Alliance Position Bonus:</b> <%= @al %><br>
+<% if params[:of] == "0" %>
+  <b>Scrapper Bonus:</b> <%= @sc %><br>
+<% end %>
 <b>Pre-Abilities Attack:</b> <%= @pre %><br>
 <b>Average Total Attack:</b> <%= @avg %><br>
 <br>
@@ -204,12 +208,25 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   <td>
   <%= select_tag(:u7, options_for_select(usage_array,params[:u7]),style: 'width:135px') %></td>
 </tr></table><br>
-  <%= label_tag(:adp, "Adapter Bonus? (All 3)") %>
-  <%= check_box_tag(:adp,"1",params[:adp]) %><br><br>
-  <%= label_tag(:al, "Alliance Position") %>
-  <%= select_tag(:al, options_for_select(alliance_array,params[:al])) %><br>
-  <%= label_tag(:of, "Optimize for") %>
-  <%= select_tag(:of, options_for_select(opt_array,params[:of])) %><br><br>
+<table>
+  <tr>
+    <td style="width:250px"><%= label_tag(:adp, "Adapter Bonus? (All 3)") %></td>
+    <td><%= check_box_tag(:adp,"1",params[:adp]) %></td>
+  </tr>
+  <tr>
+    <td><%= label_tag(:al, "Alliance Position") %></td>
+    <td><%= select_tag(:al, options_for_select(alliance_array,params[:al])) %></td>
+  </tr>
+  <tr>
+    <td><%= label_tag(:sc, "Scrapper Bonus (Attack only)") %></td>
+    <td><%= select_tag(:sc, options_for_select(scrapper_array,params[:sc])) %></td>
+  </tr>
+  <tr>
+    <td><%= label_tag(:of, "Optimize for") %></td>
+    <td><%= select_tag(:of, options_for_select(opt_array,params[:of])) %></td>
+  </tr>
+</table>
+<br>
   <%= submit_tag("Optimize") %>
 <% end %>
 
