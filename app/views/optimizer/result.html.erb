@@ -5,7 +5,7 @@
 <% effect_array = [["None",0],["Increase",1],["Decrease",2]] %>
 <% who_array = ["None","Bruisers","Speeds","Tactics","Self","All"] %>
 <% what_array = [["None",0],["ATK",1],["DEF",2],["ATK/DEF",3]] %>
-<% opt_array = [["Attack",0]] %>
+<% opt_array = [["Attack",0],["Defense",1]] %>
 <% alliance_array = [["None",0],["Alliance Leader",1],["Vice-Leader",2],["Offense Leader",3],["Defense Leader",4]] %>
 <% scrapper_array = [["None",0],["10%",1],["21%",2],["30%",3]] %>
 
@@ -21,15 +21,23 @@ Based upon the <%= @num %> cards you entered, the following is the deck (in opti
 <b>Best deck position 4:</b> <%= @best4['name'] %><br>
 <b>Best deck position 5:</b> <%= @best5['name'] %>
 <br><br>
-<b>Base Attack:</b> <%= @base %><br>
-<b>Adapter Bonus:</b> <%= @adp %><br>
-<b>Alliance Position Bonus:</b> <%= @al %><br>
-<% if params[:of] == "0" %>
+<b>Total Power of Best Deck:</b> <%= @pwr %><br><br>
+<% if @of == "0" %>
+  <b>Base Attack:</b> <%= @base %><br>
+  <b>Adapter Bonus:</b> <%= @adp %><br>
+  <b>Alliance Position Bonus:</b> <%= @al %><br>
   <b>Scrapper Bonus:</b> <%= @sc %><br>
+  <b>Pre-Abilities Attack:</b> <%= @pre %><br>
+  <b>Average Total Attack:</b> <%= @avg %><br><br>
+  <b>Average Effective Attack:</b> <%= @eff %> (this converts universal degrades into an attack boost) <br>
+<% else %>
+  <b>Base Defense:</b> <%= @base %><br>
+  <b>Adapter Bonus:</b> <%= @adp %><br>
+  <b>Alliance Position Bonus:</b> <%= @al %><br>
+  <b>Pre-Abilities Defense:</b> <%= @pre %><br>
+  <b>Average Total Defense:</b> <%= @avg %><br><br>
+  <b>Average Effective Defense:</b> <%= @eff %> (this converts universal degrades into a defense boost) <br>
 <% end %>
-<b>Pre-Abilities Attack:</b> <%= @pre %><br>
-<b>Average Total Attack:</b> <%= @avg %><br><br>
-<b>Average Effective Attack:</b> <%= @eff %> (this converts universal degrades into an attack boost) <br>
 <br>
 <b>TIP! - Bookmark this page to save the cards you've entered for next time</b>
 
