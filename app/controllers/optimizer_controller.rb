@@ -634,7 +634,6 @@ class OptimizerController < ApplicationController
                   first_cards[3] = cards[3]
                   first_cards[4] = cards[4]
                 end
-
                 
                 if post_debuff_total > best_eff_total
                   best_eff_total = post_debuff_total
@@ -871,6 +870,23 @@ class OptimizerController < ApplicationController
                 
                 #Special Combos
                   #Nothing yet
+
+                if first_done == 0
+                  first_done = 1
+                  first_eff_total = post_debuff_total
+                  first_base = base_def
+                  first_adp_bonus = temp_adp_bonus
+                  first_al_bonus = temp_al_bonus
+                  first_sc_bonus = temp_sc_bonus
+                  first_pre = pre_proc_def
+                  first_avg = avg_def2_total.round
+                  first_pwr = tot_pwr
+                  first_cards[0] = cards[0]
+                  first_cards[1] = cards[1]
+                  first_cards[2] = cards[2]
+                  first_cards[3] = cards[3]
+                  first_cards[4] = cards[4]
+                end
                 
                 if post_debuff_total > best_eff_total
                   best_eff_total = post_debuff_total

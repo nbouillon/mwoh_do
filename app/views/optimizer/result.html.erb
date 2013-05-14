@@ -42,7 +42,7 @@ Based upon the <%= @num %> cards you entered, the following is the deck (in opti
 <br>
 <% if @man == "1" %>
 <h3>Manual Deck</h3>
-This is the calculated effective attack of the first 5 cards you entered.
+This is the calculated effective <% if @of == "0" %>attack<% else %>defense<% end %> of the first 5 cards you entered.
 <br><br>
 <b>Deck position 1 (Middle):</b> <%= @first1['name'] %><br>
 <b>Deck position 2:</b> <%= @first2['name'] %><br>
