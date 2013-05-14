@@ -184,6 +184,8 @@
   <tr>
     <td><%= label_tag(:of, "Optimize for") %></td>
     <td><%= select_tag(:of, options_for_select(opt_array,params[:of])) %></td>
+    <td style="width:50px"><div align="center"><%= check_box_tag(:man,"1",false) %></div></td>
+    <td style="width:250px"><%= label_tag(:man, "Calculate deck of first 5 for comparison?") %></td>
   </tr>
 </table>
 <br>

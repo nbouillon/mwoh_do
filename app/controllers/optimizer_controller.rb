@@ -368,6 +368,15 @@ class OptimizerController < ApplicationController
       return
     end
 
+    first_cards = []
+    first_eff_total = 0
+    first_base = 0
+    first_adp_bonus = 0
+    first_al_bonus = 0
+    first_pre = 0
+    first_avg = 0
+    first_done = 0
+
     best_cards = []
     best_eff_total = 0
     best_base = 0
@@ -608,6 +617,24 @@ class OptimizerController < ApplicationController
                 
                 #Special Combos
                   #Nothing yet
+
+                if first_done == 0
+                  first_done = 1
+                  first_eff_total = post_debuff_total
+                  first_base = base_atk
+                  first_adp_bonus = temp_adp_bonus
+                  first_al_bonus = temp_al_bonus
+                  first_sc_bonus = temp_sc_bonus
+                  first_pre = pre_proc_atk
+                  first_avg = avg_atk2_total.round
+                  first_pwr = tot_pwr
+                  first_cards[0] = cards[0]
+                  first_cards[1] = cards[1]
+                  first_cards[2] = cards[2]
+                  first_cards[3] = cards[3]
+                  first_cards[4] = cards[4]
+                end
+
                 
                 if post_debuff_total > best_eff_total
                   best_eff_total = post_debuff_total
@@ -890,7 +917,23 @@ class OptimizerController < ApplicationController
     @best4 = best_cards[3]
     @best5 = best_cards[4]
 
+    @base_f = first_base
+    @adp_f = first_adp_bonus
+    @al_f = first_al_bonus
+    @sc_f = first_sc_bonus
+    @pre_f = first_pre
+    @avg_f = first_avg
+    @eff_f = first_eff_total
+    @pwr_f = first_pwr
+
+    @first1 = first_cards[0]
+    @first2 = first_cards[1]
+    @first3 = first_cards[2]
+    @first4 = first_cards[3]
+    @first5 = first_cards[4]
+
     @of = params[:of]
+    @man = params[:man]
 
     render 'result'
   end

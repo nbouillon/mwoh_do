@@ -13,6 +13,7 @@
 	<tr>
 		<td>
 <h1>Results (Beta)</h1>
+<h3>Optimal Deck</h3>
 Based upon the <%= @num %> cards you entered, the following is the deck (in optimal order) that has the highest effective attack.
 <br><br>
 <b>Best deck position 1 (Middle):</b> <%= @best1['name'] %><br>
@@ -37,6 +38,36 @@ Based upon the <%= @num %> cards you entered, the following is the deck (in opti
   <b>Pre-Abilities Defense:</b> <%= @pre %><br>
   <b>Average Total Defense:</b> <%= @avg %><br><br>
   <b>Average Effective Defense:</b> <%= @eff %> (this converts universal degrades into a defense boost) <br>
+<% end %>
+<br>
+<% if @man == "1" %>
+<h3>Manual Deck</h3>
+This is the calculated effective attack of the first 5 cards you entered.
+<br><br>
+<b>Deck position 1 (Middle):</b> <%= @first1['name'] %><br>
+<b>Deck position 2:</b> <%= @first2['name'] %><br>
+<b>Deck position 3:</b> <%= @first3['name'] %><br>
+<b>Deck position 4:</b> <%= @first4['name'] %><br>
+<b>Deck position 5:</b> <%= @first5['name'] %>
+<br><br>
+<b>Total Power of Manual Deck:</b> <%= @pwr_f %><br><br>
+<% if @of == "0" %>
+  <b>Base Attack:</b> <%= @base_f %><br>
+  <b>Adapter Bonus:</b> <%= @adp_f %><br>
+  <b>Alliance Position Bonus:</b> <%= @al_f %><br>
+  <b>Scrapper Bonus:</b> <%= @sc_f %><br>
+  <b>Pre-Abilities Attack:</b> <%= @pre_f %><br>
+  <b>Average Total Attack:</b> <%= @avg_f %><br><br>
+  <b>Average Effective Attack:</b> <%= @eff_f %> (this converts universal degrades into an attack boost) <br>
+<% else %>
+  <b>Base Defense:</b> <%= @base_f %><br>
+  <b>Adapter Bonus:</b> <%= @adp_f %><br>
+  <b>Alliance Position Bonus:</b> <%= @al_f %><br>
+  <b>Pre-Abilities Defense:</b> <%= @pre_f %><br>
+  <b>Average Total Defense:</b> <%= @avg_f %><br><br>
+  <b>Average Effective Defense:</b> <%= @eff_f %> (this converts universal degrades into a defense boost) <br>
+<% end %>
+<br>
 <% end %>
 <br>
 <b>TIP! - Bookmark this page to save the cards you've entered for next time</b>
@@ -233,6 +264,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   <tr>
     <td><%= label_tag(:of, "Optimize for") %></td>
     <td><%= select_tag(:of, options_for_select(opt_array,params[:of])) %></td>
+    <td style="width:50px"><div align="center"><%= check_box_tag(:man,"1",params[:man]) %></div></td>
+    <td style="width:250px"><%= label_tag(:man, "Calculate deck of first 5 for comparison?") %></td>
   </tr>
 </table>
 <br>
