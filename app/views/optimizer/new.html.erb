@@ -16,15 +16,15 @@
 <%= form_tag("/optimize", :method => "get") do %>
 <tr>
   <td><%= label_tag(:n, "Name") %>
-  <%= text_field_tag(:n , "Card1", style: 'width:200px', maxlength: 30) %></td>
+  <%= text_field_tag(:n , "Card1", style: 'width:175px', maxlength: 30) %></td>
   <td><%= label_tag(:n, "Alignment") %>
   <%= select_tag(:an , options_for_select(alignment_array), style: 'width:70px') %></td>
   <td><%= label_tag(:p, "PWR") %>
-  <%= text_field_tag(:p, "10", style: 'width:30px', maxlength: 2) %></td>
+  <%= text_field_tag(:p, "10", style: 'width:25px', maxlength: 2) %></td>
   <td><%= label_tag(:ak, "ATK") %>
-  <%= text_field_tag(:ak, "1000", style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:ak, "1000", style: 'width:40px', maxlength: 5) %></td>
   <td><%= label_tag(:d, "DEF") %>
-  <%= text_field_tag(:d, "1100", style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:d, "1100", style: 'width:40px', maxlength: 5) %></td>
   <td><%= label_tag(:a_a, "Ability Adjective") %>
   <%= select_tag(:a_a , options_for_select(adj_array),style: 'width:115px') %></td>
   <td><%= label_tag(:a_e, "Ability Effect") %>
@@ -35,18 +35,20 @@
   <%= select_tag(:a_wo , options_for_select(who_array),style: 'width:90px') %></td>
   <td><%= label_tag(:u, "Ability Usage") %>
   <%= select_tag(:u , options_for_select(usage_array,"3"),style: 'width:135px') %></td>
+  <td><%= label_tag(:a_l, "A. Lv") %>
+  <%= text_field_tag(:a_l, "1", style: 'width:20px', maxlength: 2) %></td>
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:n2 , "Card2", style: 'width:200px', maxlength: 30) %></td>
+  <%= text_field_tag(:n2 , "Card2", style: 'width:175px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:an2 , options_for_select(alignment_array), style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:p2, "11", style: 'width:30px', maxlength: 2) %></td>
+  <%= text_field_tag(:p2, "11", style: 'width:25px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:ak2, "1500", style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:ak2, "1500", style: 'width:40px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:d2, "950", style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:d2, "950", style: 'width:40px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:a_a2 , options_for_select(adj_array),style: 'width:115px') %></td>
   <td>
@@ -57,18 +59,20 @@
   <%= select_tag(:a_wo2 , options_for_select(who_array),style: 'width:90px') %></td>
   <td>
   <%= select_tag(:u2 , options_for_select(usage_array,"3"),style: 'width:135px') %></td>
+  <td>
+  <%= text_field_tag(:a_l2, "1", style: 'width:20px', maxlength: 2) %></td>
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:n3 , "Card3", style: 'width:200px', maxlength: 30) %></td>
+  <%= text_field_tag(:n3 , "Card3", style: 'width:175px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:an3 , options_for_select(alignment_array),style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:p3, "12", style: 'width:30px', maxlength: 2) %></td>
+  <%= text_field_tag(:p3, "12", style: 'width:25px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:ak3, "1234", style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:ak3, "1234", style: 'width:40px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:d3, "1000", style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:d3, "1000", style: 'width:40px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:a_a3 , options_for_select(adj_array),style: 'width:115px') %></td>
   <td>
@@ -79,18 +83,20 @@
   <%= select_tag(:a_wo3 , options_for_select(who_array),style: 'width:90px') %></td>
   <td>
   <%= select_tag(:u3 , options_for_select(usage_array,"3"),style: 'width:135px') %></td>
+  <td>
+  <%= text_field_tag(:a_l3, "1", style: 'width:20px', maxlength: 2) %></td>
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:n4 , "Card4", style: 'width:200px', maxlength: 30) %></td>
+  <%= text_field_tag(:n4 , "Card4", style: 'width:175px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:an4 , options_for_select(alignment_array),style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:p4, "13", style: 'width:30px', maxlength: 2) %></td>
+  <%= text_field_tag(:p4, "13", style: 'width:25px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:ak4, "5555", style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:ak4, "5555", style: 'width:40px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:d4, "4985", style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:d4, "4985", style: 'width:40px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:a_a4 , options_for_select(adj_array),style: 'width:115px') %></td>
   <td>
@@ -101,18 +107,20 @@
   <%= select_tag(:a_wo4 , options_for_select(who_array),style: 'width:90px') %></td>
   <td>
   <%= select_tag(:u4 , options_for_select(usage_array,"3"),style: 'width:135px') %></td>
+  <td>
+  <%= text_field_tag(:a_l4, "1", style: 'width:20px', maxlength: 2) %></td>
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:n5 , "Card5", style: 'width:200px', maxlength: 30) %></td>
+  <%= text_field_tag(:n5 , "Card5", style: 'width:175px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:an5 , options_for_select(alignment_array), style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:p5, "14", style: 'width:30px', maxlength: 2) %></td>
+  <%= text_field_tag(:p5, "14", style: 'width:25px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:ak5, "2100", style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:ak5, "2100", style: 'width:40px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:d5, "2000", style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:d5, "2000", style: 'width:40px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:a_a5 , options_for_select(adj_array),style: 'width:115px') %></td>
   <td>
@@ -123,18 +131,20 @@
   <%= select_tag(:a_wo5 , options_for_select(who_array),style: 'width:90px') %></td>
   <td>
   <%= select_tag(:u5 , options_for_select(usage_array,"3"),style: 'width:135px') %></td>
+  <td>
+  <%= text_field_tag(:a_l5, "1", style: 'width:20px', maxlength: 2) %></td>
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:n6, nil, style: 'width:200px', maxlength: 30) %></td>
+  <%= text_field_tag(:n6, nil, style: 'width:175px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:an6, options_for_select(alignment_array), style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:p6, nil, style: 'width:30px', maxlength: 2) %></td>
+  <%= text_field_tag(:p6, nil, style: 'width:25px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:ak6, nil, style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:ak6, nil, style: 'width:40px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:d6, nil, style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:d6, nil, style: 'width:40px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:a_a6, options_for_select(adj_array),style: 'width:115px') %></td>
   <td>
@@ -145,18 +155,20 @@
   <%= select_tag(:a_wo6, options_for_select(who_array),style: 'width:90px') %></td>
   <td>
   <%= select_tag(:u6, options_for_select(usage_array,"3"),style: 'width:135px') %></td>
+  <td>
+  <%= text_field_tag(:a_l6, "1", style: 'width:20px', maxlength: 2) %></td>
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:n7, nil, style: 'width:200px', maxlength: 30) %></td>
+  <%= text_field_tag(:n7, nil, style: 'width:175px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:an7, options_for_select(alignment_array), style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:p7, nil, style: 'width:30px', maxlength: 2) %></td>
+  <%= text_field_tag(:p7, nil, style: 'width:25px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:ak7, nil, style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:ak7, nil, style: 'width:40px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:d7, nil, style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:d7, nil, style: 'width:40px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:a_a7, options_for_select(adj_array),style: 'width:115px') %></td>
   <td>
@@ -167,6 +179,8 @@
   <%= select_tag(:a_wo7, options_for_select(who_array),style: 'width:90px') %></td>
   <td>
   <%= select_tag(:u7, options_for_select(usage_array,"3"),style: 'width:135px') %></td>
+  <td>
+  <%= text_field_tag(:a_l7, "1", style: 'width:20px', maxlength: 2) %></td>
 </tr></table><br>
 <table>
   <tr>
@@ -184,7 +198,7 @@
   <tr>
     <td><%= label_tag(:of, "Optimize for") %></td>
     <td><%= select_tag(:of, options_for_select(opt_array,params[:of])) %></td>
-    <td style="width:50px"><div align="center"><%= check_box_tag(:man,"1",false) %></div></td>
+    <td style="width:40px"><div align="center"><%= check_box_tag(:man,"1",false) %></div></td>
     <td style="width:250px"><%= label_tag(:man, "Calculate deck of first 5 for comparison?") %></td>
   </tr>
 </table>

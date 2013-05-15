@@ -3,98 +3,117 @@ class OptimizerController < ApplicationController
   	@card = Card.new
   end
 
-  def card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage)
+  def card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage,temp_alvl)
     if temp_effect == "1"   #Increase
       newcard['debuff_def'] = "No"
       newcard['debuff_atk'] = "No"
-      if temp_what == "1"   #ATK only
-        newcard['boost_atk'] = "Yes"
-        newcard['boost_def'] = "No"
-        if temp_who == "Self"
-          if temp_adj == "1"
-            newcard['a_pct'] = 12.0
-          elsif temp_adj == "2"
-            newcard['a_pct'] = 24.0
-          elsif temp_adj == "3"
-            newcard['a_pct'] = 36.0
-          elsif temp_adj == "4"
-            newcard['a_pct'] = 48.0
-          elsif temp_adj == "5"
-            newcard['a_pct'] = 60.0
-          else
-            newcard['a_pct'] = 0.0
-          end
-        elsif temp_who == "All"
-          if temp_adj == "1"
-            newcard['a_pct'] = 3.0
-          elsif temp_adj == "2"
-            newcard['a_pct'] = 6.0
-          elsif temp_adj == "3"
-            newcard['a_pct'] = 9.0
-          elsif temp_adj == "4"
-            newcard['a_pct'] = 12.0
-          elsif temp_adj == "5"
-            newcard['a_pct'] = 16.0
-          else
-            newcard['a_pct'] = 0.0
-          end
+      if temp_what == "1" or temp_what == "2"  #ATK or DEF only
+        if temp_what == "1"
+          newcard['boost_atk'] = "Yes"
+          newcard['boost_def'] = "No"
         else
-          if temp_adj == "1"
-            newcard['a_pct'] = 4.0
-          elsif temp_adj == "2"
-            newcard['a_pct'] = 8.0
-          elsif temp_adj == "3"
-            newcard['a_pct'] = 12.0
-          elsif temp_adj == "4"
-            newcard['a_pct'] = 16.0
-          elsif temp_adj == "5"
-            newcard['a_pct'] = 20.0
-          else
-            newcard['a_pct'] = 0.0
-          end
+          newcard['boost_atk'] = "No"
+          newcard['boost_def'] = "Yes"
         end
-      elsif temp_what == "2"    #DEF only
-        newcard['boost_atk'] = "No"
-        newcard['boost_def'] = "Yes"
         if temp_who == "Self"
-          if temp_adj == "1"
-            newcard['a_pct'] = 12.0
-          elsif temp_adj == "2"
-            newcard['a_pct'] = 24.0
-          elsif temp_adj == "3"
-            newcard['a_pct'] = 36.0
-          elsif temp_adj == "4"
-            newcard['a_pct'] = 48.0
-          elsif temp_adj == "5"
-            newcard['a_pct'] = 60.0
+          if temp_adj == "1"    #Partially
+            if temp_alvl == 10
+              newcard['a_pct'] = 12.0 + 10.0
+            else
+              newcard['a_pct'] = (12.0 + (temp_alvl - 1) * 1.0).round
+            end
+          elsif temp_adj == "2"    #Notably
+            if temp_alvl == 10
+              newcard['a_pct'] = 24.0 + 20.0
+            else
+              newcard['a_pct'] = (24.0 + (temp_alvl - 1) * 2.0).round
+            end
+          elsif temp_adj == "3"    #Remarkably
+            if temp_alvl == 10
+              newcard['a_pct'] = 36.0 + 20.0
+            else
+              newcard['a_pct'] = (36.0 + (temp_alvl - 1) * 2.0).round
+            end
+          elsif temp_adj == "4"    #Significantly
+            if temp_alvl == 10
+              newcard['a_pct'] = 48.0 + 24.0
+            else
+              newcard['a_pct'] = (48.0 + (temp_alvl - 1) * 2.4).round
+            end
+          elsif temp_adj == "5"    #Extremely
+            if temp_alvl == 10
+              newcard['a_pct'] = 58.0 + 24.0
+            else
+              newcard['a_pct'] = (58.0 + (temp_alvl - 1) * 2.4).round
+            end
           else
             newcard['a_pct'] = 0.0
           end
         elsif temp_who == "All"
           if temp_adj == "1"
-            newcard['a_pct'] = 3.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 3.0 + 6.0
+            else
+              newcard['a_pct'] = (3.0 + (temp_alvl - 1) * 0.6).round
+            end
           elsif temp_adj == "2"
-            newcard['a_pct'] = 6.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 6.0 + 7.0
+            else
+              newcard['a_pct'] = (6.0 + (temp_alvl - 1) * 0.7).round
+            end
           elsif temp_adj == "3"
-            newcard['a_pct'] = 9.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 9.0 + 7.0
+            else
+              newcard['a_pct'] = (9.0 + (temp_alvl - 1) * 0.7).round
+            end
           elsif temp_adj == "4"
-            newcard['a_pct'] = 12.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 12.0 + 8.0
+            else
+              newcard['a_pct'] = (12.0 + (temp_alvl - 1) * 0.8).round
+            end
           elsif temp_adj == "5"
-            newcard['a_pct'] = 16.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 16.0 + 8.0
+            else
+              newcard['a_pct'] = (16.0 + (temp_alvl - 1) * 0.8).round
+            end
           else
             newcard['a_pct'] = 0.0
           end
         else
           if temp_adj == "1"
-            newcard['a_pct'] = 4.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 4.0 + 6.0
+            else
+              newcard['a_pct'] = (4.0 + (temp_alvl - 1) * 0.6).round
+            end
           elsif temp_adj == "2"
-            newcard['a_pct'] = 8.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 8.0 + 7.0
+            else
+              newcard['a_pct'] = (8.0 + (temp_alvl - 1) * 0.7).round
+            end
           elsif temp_adj == "3"
-            newcard['a_pct'] = 12.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 12.0 + 8.0
+            else
+              newcard['a_pct'] = (12.0 + (temp_alvl - 1) * 0.8).round
+            end
           elsif temp_adj == "4"
-            newcard['a_pct'] = 16.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 16.0 + 9.0
+            else
+              newcard['a_pct'] = (16.0 + (temp_alvl - 1) * 0.9).round
+            end
           elsif temp_adj == "5"
-            newcard['a_pct'] = 20.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 20.0 + 10.0
+            else
+              newcard['a_pct'] = (20.0 + (temp_alvl - 1) * 1.0).round
+            end
           else
             newcard['a_pct'] = 0.0
           end
@@ -103,44 +122,104 @@ class OptimizerController < ApplicationController
         newcard['boost_atk'] = "Yes"
         newcard['boost_def'] = "Yes"
         if temp_who == "Self"
-          if temp_adj == "1"
-            newcard['a_pct'] = 10.0
-          elsif temp_adj == "2"
-            newcard['a_pct'] = 20.0
-          elsif temp_adj == "3"
-            newcard['a_pct'] = 30.0
-          elsif temp_adj == "4"
-            newcard['a_pct'] = 40.0
-          elsif temp_adj == "5"
-            newcard['a_pct'] = 50.0
+          if temp_adj == "1"    #Partially
+            if temp_alvl == 10
+              newcard['a_pct'] = 10.0 + 10.0
+            else
+              newcard['a_pct'] = (10.0 + (temp_alvl - 1) * 1.0).round
+            end
+          elsif temp_adj == "2"    #Notably
+            if temp_alvl == 10
+              newcard['a_pct'] = 20.0 + 20.0
+            else
+              newcard['a_pct'] = (20.0 + (temp_alvl - 1) * 2.0).round
+            end
+          elsif temp_adj == "3"    #Remarkably
+            if temp_alvl == 10
+              newcard['a_pct'] = 30.0 + 20.0
+            else
+              newcard['a_pct'] = (30.0 + (temp_alvl - 1) * 2.0).round
+            end
+          elsif temp_adj == "4"    #Significantly
+            if temp_alvl == 10
+              newcard['a_pct'] = 38.0 + 24.0
+            else
+              newcard['a_pct'] = (38.0 + (temp_alvl - 1) * 2.4).round
+            end
+          elsif temp_adj == "5"    #Extremely
+            if temp_alvl == 10
+              newcard['a_pct'] = 48.0 + 24.0
+            else
+              newcard['a_pct'] = (48.0 + (temp_alvl - 1) * 2.4).round
+            end
           else
             newcard['a_pct'] = 0.0
           end
         elsif temp_who == "All"
           if temp_adj == "1"
-            newcard['a_pct'] = 2.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 2.0 + 6.0
+            else
+              newcard['a_pct'] = (2.0 + (temp_alvl - 1) * 0.6).round
+            end
           elsif temp_adj == "2"
-            newcard['a_pct'] = 4.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 4.0 + 7.0
+            else
+              newcard['a_pct'] = (4.0 + (temp_alvl - 1) * 0.7).round
+            end
           elsif temp_adj == "3"
-            newcard['a_pct'] = 7.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 7.0 + 7.0
+            else
+              newcard['a_pct'] = (7.0 + (temp_alvl - 1) * 0.7).round
+            end
           elsif temp_adj == "4"
-            newcard['a_pct'] = 9.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 9.0 + 8.0
+            else
+              newcard['a_pct'] = (9.0 + (temp_alvl - 1) * 0.8).round
+            end
           elsif temp_adj == "5"
-            newcard['a_pct'] = 12.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 12.0 + 8.0
+            else
+              newcard['a_pct'] = (12.0 + (temp_alvl - 1) * 0.8).round
+            end
           else
             newcard['a_pct'] = 0.0
           end
         else
           if temp_adj == "1"
-            newcard['a_pct'] = 3.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 3.0 + 6.0
+            else
+              newcard['a_pct'] = (3.0 + (temp_alvl - 1) * 0.6).round
+            end
           elsif temp_adj == "2"
-            newcard['a_pct'] = 6.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 6.0 + 6.0
+            else
+              newcard['a_pct'] = (6.0 + (temp_alvl - 1) * 0.6).round
+            end
           elsif temp_adj == "3"
-            newcard['a_pct'] = 9.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 9.0 + 7.0
+            else
+              newcard['a_pct'] = (9.0 + (temp_alvl - 1) * 0.7).round
+            end
           elsif temp_adj == "4"
-            newcard['a_pct'] = 12.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 12.0 + 8.0
+            else
+              newcard['a_pct'] = (12.0 + (temp_alvl - 1) * 0.8).round
+            end
           elsif temp_adj == "5"
-            newcard['a_pct'] = 16.0
+            if temp_alvl == 10
+              newcard['a_pct'] = 16.0 + 8.0
+            else
+              newcard['a_pct'] = (16.0 + (temp_alvl - 1) * 8.0).round
+            end
           else
             newcard['a_pct'] = 0.0
           end
@@ -153,42 +232,45 @@ class OptimizerController < ApplicationController
     elsif temp_effect == "2"  #Decrease (debuff/degrade)
       newcard['boost_atk'] = "No"
       newcard['boost_def'] = "No"
-      if temp_what == "1"     #ATK only
+      if temp_what == "1" or temp_what == "2"    #ATK or DEF only
         if temp_who == "All"
-          newcard['debuff_def'] = "No"
-          newcard['debuff_atk'] = "Yes"
-          if temp_adj == "1"  #Partially
-            newcard['a_pct'] = 3.0
-          elsif temp_adj == "2"   #Notably
-            newcard['a_pct'] = 6.0
-          elsif temp_adj == "3"   #Remarkably
-            newcard['a_pct'] = 9.0
-          elsif temp_adj == "4"   #Significantly
-            newcard['a_pct'] = 12.0
-          elsif temp_adj == "5"   #Extremely
-            newcard['a_pct'] = 16.0
+          if temp_what == "1"
+            newcard['debuff_def'] = "No"
+            newcard['debuff_atk'] = "Yes"
           else
-            newcard['a_pct'] = 0.0
+            newcard['debuff_def'] = "Yes"
+            newcard['debuff_atk'] = "No"
           end
-        else
-          newcard['debuff_def'] = "No"
-          newcard['debuff_atk'] = "No"
-          newcard['a_pct'] = 0.0
-        end        
-      elsif temp_what == "2"     #DEF only
-        if temp_who == "All"
-          newcard['debuff_def'] = "Yes"
-          newcard['debuff_atk'] = "No"
-          if temp_adj == "1"  #Partially
-            newcard['a_pct'] = 3.0
-          elsif temp_adj == "2"   #Notably
-            newcard['a_pct'] = 6.0
-          elsif temp_adj == "3"   #Remarkably
-            newcard['a_pct'] = 9.0
-          elsif temp_adj == "4"   #Significantly
-            newcard['a_pct'] = 12.0
-          elsif temp_adj == "5"   #Extremely
-            newcard['a_pct'] = 16.0
+          if temp_adj == "1"
+            if temp_alvl == 10
+              newcard['a_pct'] = 3.0 + 6.0
+            else
+              newcard['a_pct'] = (3.0 + (temp_alvl - 1) * 0.6).round
+            end
+          elsif temp_adj == "2"
+            if temp_alvl == 10
+              newcard['a_pct'] = 6.0 + 7.0
+            else
+              newcard['a_pct'] = (6.0 + (temp_alvl - 1) * 0.7).round
+            end
+          elsif temp_adj == "3"
+            if temp_alvl == 10
+              newcard['a_pct'] = 9.0 + 7.0
+            else
+              newcard['a_pct'] = (9.0 + (temp_alvl - 1) * 0.7).round
+            end
+          elsif temp_adj == "4"
+            if temp_alvl == 10
+              newcard['a_pct'] = 12.0 + 8.0
+            else
+              newcard['a_pct'] = (12.0 + (temp_alvl - 1) * 0.8).round
+            end
+          elsif temp_adj == "5"
+            if temp_alvl == 10
+              newcard['a_pct'] = 16.0 + 8.0
+            else
+              newcard['a_pct'] = (16.0 + (temp_alvl - 1) * 0.8).round
+            end
           else
             newcard['a_pct'] = 0.0
           end
@@ -201,16 +283,36 @@ class OptimizerController < ApplicationController
         if temp_who == "All"
           newcard['debuff_def'] = "Yes"
           newcard['debuff_atk'] = "Yes"
-          if temp_adj == "1"  #Partially
-            newcard['a_pct'] = 2.0
-          elsif temp_adj == "2"   #Notably
-            newcard['a_pct'] = 4.0
-          elsif temp_adj == "3"   #Remarkably
-            newcard['a_pct'] = 7.0
-          elsif temp_adj == "4"   #Significantly
-            newcard['a_pct'] = 9.0
-          elsif temp_adj == "5"   #Extremely
-            newcard['a_pct'] = 12.0
+          if temp_adj == "1"
+            if temp_alvl == 10
+              newcard['a_pct'] = 2.0 + 6.0
+            else
+              newcard['a_pct'] = (2.0 + (temp_alvl - 1) * 0.6).round
+            end
+          elsif temp_adj == "2"
+            if temp_alvl == 10
+              newcard['a_pct'] = 4.0 + 7.0
+            else
+              newcard['a_pct'] = (4.0 + (temp_alvl - 1) * 0.7).round
+            end
+          elsif temp_adj == "3"
+            if temp_alvl == 10
+              newcard['a_pct'] = 7.0 + 7.0
+            else
+              newcard['a_pct'] = (7.0 + (temp_alvl - 1) * 0.7).round
+            end
+          elsif temp_adj == "4"
+            if temp_alvl == 10
+              newcard['a_pct'] = 9.0 + 8.0
+            else
+              newcard['a_pct'] = (9.0 + (temp_alvl - 1) * 0.8).round
+            end
+          elsif temp_adj == "5"
+            if temp_alvl == 10
+              newcard['a_pct'] = 12.0 + 8.0
+            else
+              newcard['a_pct'] = (12.0 + (temp_alvl - 1) * 0.8).round
+            end
           else
             newcard['a_pct'] = 0.0
           end
@@ -253,8 +355,12 @@ class OptimizerController < ApplicationController
       temp_who = params[:a_wo]
       temp_adj = params[:a_a]
       temp_usage = params[:u]
+      temp_alvl = params[:a_l].to_i
+      if temp_alvl < 1 or temp_alvl > 10
+        temp_alvl = 1
+      end
 
-      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage)
+      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage,temp_alvl)
       cardlist.append(newcard)
     end
 
@@ -270,8 +376,12 @@ class OptimizerController < ApplicationController
       temp_who = params[:a_wo2]
       temp_adj = params[:a_a2]
       temp_usage = params[:u2]
+      temp_alvl = params[:a_l2].to_i
+      if temp_alvl < 1 or temp_alvl > 10
+        temp_alvl = 1
+      end
 
-      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage)
+      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage,temp_alvl)
       cardlist.append(newcard)
     end
 
@@ -287,8 +397,12 @@ class OptimizerController < ApplicationController
       temp_who = params[:a_wo3]
       temp_adj = params[:a_a3]
       temp_usage = params[:u3]
+      temp_alvl = params[:a_l3].to_i
+      if temp_alvl < 1 or temp_alvl > 10
+        temp_alvl = 1
+      end
 
-      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage)
+      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage,temp_alvl)
       cardlist.append(newcard)
     end
 
@@ -304,8 +418,12 @@ class OptimizerController < ApplicationController
       temp_who = params[:a_wo4]
       temp_adj = params[:a_a4]
       temp_usage = params[:u4]
+      temp_alvl = params[:a_l4].to_i
+      if temp_alvl < 1 or temp_alvl > 10
+        temp_alvl = 1
+      end
 
-      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage)
+      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage,temp_alvl)
       cardlist.append(newcard)
     end
 
@@ -321,8 +439,12 @@ class OptimizerController < ApplicationController
       temp_who = params[:a_wo5]
       temp_adj = params[:a_a5]
       temp_usage = params[:u5]
+      temp_alvl = params[:a_l5].to_i
+      if temp_alvl < 1 or temp_alvl > 10
+        temp_alvl = 1
+      end
 
-      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage)
+      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage,temp_alvl)
       cardlist.append(newcard)
     end
 
@@ -338,8 +460,12 @@ class OptimizerController < ApplicationController
       temp_who = params[:a_wo6]
       temp_adj = params[:a_a6]
       temp_usage = params[:u6]
+      temp_alvl = params[:a_l6].to_i
+      if temp_alvl < 1 or temp_alvl > 10
+        temp_alvl = 1
+      end
 
-      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage)
+      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage,temp_alvl)
       cardlist.append(newcard)
     end
 
@@ -355,8 +481,12 @@ class OptimizerController < ApplicationController
       temp_who = params[:a_wo7]
       temp_adj = params[:a_a7]
       temp_usage = params[:u7]
+      temp_alvl = params[:a_l7].to_i
+      if temp_alvl < 1 or temp_alvl > 10
+        temp_alvl = 1
+      end
 
-      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage)
+      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage,temp_alvl)
       cardlist.append(newcard)
     end
 
@@ -510,31 +640,31 @@ class OptimizerController < ApplicationController
                   if cards[0]['a_who'] == 'Speeds'
                     for j in 0...5
                       if cards[j]['align'] == 'SPD'
-                        avg_atk2[j] = avg_atk2[j] * (1 + multiplier*(cards[0]['a_pct']/100))
+                        avg_atk2[j] = avg_atk2[j] * (1 + multiplier*(cards[0]['a_pct']/100.0))
                       end
                     end
                   end
                   if cards[0]['a_who'] == 'Bruisers'
                     for j in 0...5
                       if cards[j]['align'] == 'BRU'
-                        avg_atk2[j] = avg_atk2[j] * (1 + multiplier*(cards[0]['a_pct']/100))
+                        avg_atk2[j] = avg_atk2[j] * (1 + multiplier*(cards[0]['a_pct']/100.0))
                       end
                     end
                   end
                   if cards[0]['a_who'] == 'Tactics'
                     for j in 0...5
                       if cards[j]['align'] == 'TAC'
-                        avg_atk2[j] = avg_atk2[j] * (1 + multiplier*(cards[0]['a_pct']/100))
+                        avg_atk2[j] = avg_atk2[j] * (1 + multiplier*(cards[0]['a_pct']/100.0))
                       end
                     end
                   end
                   if cards[0]['a_who'] == 'All'
                     for j in 0...5
-                      avg_atk2[j] = avg_atk2[j] * (1 + multiplier*(cards[0]['a_pct']/100))
+                      avg_atk2[j] = avg_atk2[j] * (1 + multiplier*(cards[0]['a_pct']/100.0))
                     end
                   end
                   if cards[0]['a_who'] == 'Self'
-                    avg_atk2[0] = avg_atk2[0] * (1 + multiplier*(cards[0]['a_pct']/100))
+                    avg_atk2[0] = avg_atk2[0] * (1 + multiplier*(cards[0]['a_pct']/100.0))
                   end
                 end
                     
@@ -552,31 +682,31 @@ class OptimizerController < ApplicationController
                     if cards[i]['a_who'] == 'Speeds'
                       for j in 0...5
                         if cards[j]['align'] == 'SPD'
-                          avg_atk2[j] = avg_atk2[j] * (1 + multiplier*(cards[i]['a_pct']/100))
+                          avg_atk2[j] = avg_atk2[j] * (1 + multiplier*(cards[i]['a_pct']/100.0))
                         end
                       end
                     end
                     if cards[i]['a_who'] == 'Bruisers'
                       for j in 0...5
                         if cards[j]['align'] == 'BRU'
-                          avg_atk2[j] = avg_atk2[j] * (1 + multiplier*(cards[i]['a_pct']/100))
+                          avg_atk2[j] = avg_atk2[j] * (1 + multiplier*(cards[i]['a_pct']/100.0))
                         end
                       end
                     end
                     if cards[i]['a_who'] == 'Tactics'
                       for j in 0...5
                         if cards[j]['align'] == 'TAC'
-                          avg_atk2[j] = avg_atk2[j] * (1 + multiplier*(cards[i]['a_pct']/100))
+                          avg_atk2[j] = avg_atk2[j] * (1 + multiplier*(cards[i]['a_pct']/100.0))
                         end
                       end
                     end
                     if cards[i]['a_who'] == 'All'
                       for j in 0...5
-                        avg_atk2[j] = avg_atk2[j] * (1 + multiplier*(cards[i]['a_pct']/100))
+                        avg_atk2[j] = avg_atk2[j] * (1 + multiplier*(cards[i]['a_pct']/100.0))
                       end
                     end
                     if cards[i]['a_who'] == 'Self'
-                      avg_atk2[i] = avg_atk2[i] * (1 + multiplier*(cards[i]['a_pct']/100))
+                      avg_atk2[i] = avg_atk2[i] * (1 + multiplier*(cards[i]['a_pct']/100.0))
                     end
                   end
                 end
@@ -609,7 +739,7 @@ class OptimizerController < ApplicationController
                         multiplier = 0.33
                       end
                     end
-                    eff_boost = (1.0 / (1.0 - (cards[i]['a_pct']/100))) - 1
+                    eff_boost = (1.0 / (1.0 - (cards[i]['a_pct']/100.0))) - 1
                     eff_boost = 1 + (multiplier * eff_boost)
                     post_debuff_total = (post_debuff_total * eff_boost).round
                   end
@@ -763,31 +893,31 @@ class OptimizerController < ApplicationController
                   if cards[0]['a_who'] == 'Speeds'
                     for j in 0...5
                       if cards[j]['align'] == 'SPD'
-                        avg_def2[j] = avg_def2[j] * (1 + multiplier*(cards[0]['a_pct']/100))
+                        avg_def2[j] = avg_def2[j] * (1 + multiplier*(cards[0]['a_pct']/100.0))
                       end
                     end
                   end
                   if cards[0]['a_who'] == 'Bruisers'
                     for j in 0...5
                       if cards[j]['align'] == 'BRU'
-                        avg_def2[j] = avg_def2[j] * (1 + multiplier*(cards[0]['a_pct']/100))
+                        avg_def2[j] = avg_def2[j] * (1 + multiplier*(cards[0]['a_pct']/100.0))
                       end
                     end
                   end
                   if cards[0]['a_who'] == 'Tactics'
                     for j in 0...5
                       if cards[j]['align'] == 'TAC'
-                        avg_def2[j] = avg_def2[j] * (1 + multiplier*(cards[0]['a_pct']/100))
+                        avg_def2[j] = avg_def2[j] * (1 + multiplier*(cards[0]['a_pct']/100.0))
                       end
                     end
                   end
                   if cards[0]['a_who'] == 'All'
                     for j in 0...5
-                      avg_def2[j] = avg_def2[j] * (1 + multiplier*(cards[0]['a_pct']/100))
+                      avg_def2[j] = avg_def2[j] * (1 + multiplier*(cards[0]['a_pct']/100.0))
                     end
                   end
                   if cards[0]['a_who'] == 'Self'
-                    avg_def2[0] = avg_def2[0] * (1 + multiplier*(cards[0]['a_pct']/100))
+                    avg_def2[0] = avg_def2[0] * (1 + multiplier*(cards[0]['a_pct']/100.0))
                   end
                 end
                     
@@ -805,31 +935,31 @@ class OptimizerController < ApplicationController
                     if cards[i]['a_who'] == 'Speeds'
                       for j in 0...5
                         if cards[j]['align'] == 'SPD'
-                          avg_def2[j] = avg_def2[j] * (1 + multiplier*(cards[i]['a_pct']/100))
+                          avg_def2[j] = avg_def2[j] * (1 + multiplier*(cards[i]['a_pct']/100.0))
                         end
                       end
                     end
                     if cards[i]['a_who'] == 'Bruisers'
                       for j in 0...5
                         if cards[j]['align'] == 'BRU'
-                          avg_def2[j] = avg_def2[j] * (1 + multiplier*(cards[i]['a_pct']/100))
+                          avg_def2[j] = avg_def2[j] * (1 + multiplier*(cards[i]['a_pct']/100.0))
                         end
                       end
                     end
                     if cards[i]['a_who'] == 'Tactics'
                       for j in 0...5
                         if cards[j]['align'] == 'TAC'
-                          avg_def2[j] = avg_def2[j] * (1 + multiplier*(cards[i]['a_pct']/100))
+                          avg_def2[j] = avg_def2[j] * (1 + multiplier*(cards[i]['a_pct']/100.0))
                         end
                       end
                     end
                     if cards[i]['a_who'] == 'All'
                       for j in 0...5
-                        avg_def2[j] = avg_def2[j] * (1 + multiplier*(cards[i]['a_pct']/100))
+                        avg_def2[j] = avg_def2[j] * (1 + multiplier*(cards[i]['a_pct']/100.0))
                       end
                     end
                     if cards[i]['a_who'] == 'Self'
-                      avg_def2[i] = avg_def2[i] * (1 + multiplier*(cards[i]['a_pct']/100))
+                      avg_def2[i] = avg_def2[i] * (1 + multiplier*(cards[i]['a_pct']/100.0))
                     end
                   end
                 end
@@ -862,7 +992,7 @@ class OptimizerController < ApplicationController
                         multiplier = 0.33
                       end
                     end
-                    eff_boost = (1.0 / (1.0 - (cards[i]['a_pct']/100))) - 1
+                    eff_boost = (1.0 / (1.0 - (cards[i]['a_pct']/100.0))) - 1
                     eff_boost = 1 + (multiplier * eff_boost)
                     post_debuff_total = (post_debuff_total * eff_boost).round
                   end

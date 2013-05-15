@@ -14,7 +14,7 @@
 		<td>
 <h1>Results (Beta)</h1>
 <h3>Optimal Deck</h3>
-Based upon the <%= @num %> cards you entered, the following is the deck (in optimal order) that has the highest effective attack.
+Based upon the <%= @num %> cards you entered, the following is the deck (in optimal order) that has the highest effective <% if @of == "0" %>attack<% else %>defense<% end %>.
 <br><br>
 <b>Best deck position 1 (Middle):</b> <%= @best1['name'] %><br>
 <b>Best deck position 2:</b> <%= @best2['name'] %><br>
@@ -96,15 +96,15 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 <%= form_tag("/optimize", :method => "get") do %>
 <tr>
   <td><%= label_tag(:n, "Name") %>
-  <%= text_field_tag(:n , params[:n], style: 'width:200px', maxlength: 30) %></td>
+  <%= text_field_tag(:n , params[:n], style: 'width:175px', maxlength: 30) %></td>
   <td><%= label_tag(:n, "Alignment") %>
   <%= select_tag(:an , options_for_select(alignment_array,params[:an]), style: 'width:70px') %></td>
   <td><%= label_tag(:p, "PWR") %>
-  <%= text_field_tag(:p, params[:p], style: 'width:30px', maxlength: 2) %></td>
+  <%= text_field_tag(:p, params[:p], style: 'width:25px', maxlength: 2) %></td>
   <td><%= label_tag(:ak, "ATK") %>
-  <%= text_field_tag(:ak, params[:ak], style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:ak, params[:ak], style: 'width:40px', maxlength: 5) %></td>
   <td><%= label_tag(:d, "DEF") %>
-  <%= text_field_tag(:d, params[:d], style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:d, params[:d], style: 'width:40px', maxlength: 5) %></td>
   <td><%= label_tag(:a_a, "Ability Adjective") %>
   <%= select_tag(:a_a , options_for_select(adj_array,params[:a_a]),style: 'width:115px') %></td>
   <td><%= label_tag(:a_e, "Ability Effect") %>
@@ -115,18 +115,20 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   <%= select_tag(:a_wo , options_for_select(who_array,params[:a_wo]),style: 'width:90px') %></td>
   <td><%= label_tag(:u, "Ability Usage") %>
   <%= select_tag(:u , options_for_select(usage_array,params[:u]),style: 'width:135px') %></td>
+  <td><%= label_tag(:a_l, "A. Lv") %>
+  <%= text_field_tag(:a_l, params[:a_l], style: 'width:20px', maxlength: 2) %></td>
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:n2 , params[:n2], style: 'width:200px', maxlength: 30) %></td>
+  <%= text_field_tag(:n2 , params[:n2], style: 'width:175px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:an2 , options_for_select(alignment_array,params[:an2]), style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:p2, params[:p2], style: 'width:30px', maxlength: 2) %></td>
+  <%= text_field_tag(:p2, params[:p2], style: 'width:25px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:ak2, params[:ak2], style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:ak2, params[:ak2], style: 'width:40px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:d2, params[:d2], style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:d2, params[:d2], style: 'width:40px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:a_a2 , options_for_select(adj_array,params[:a_a2]),style: 'width:115px') %></td>
   <td>
@@ -137,18 +139,20 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   <%= select_tag(:a_wo2 , options_for_select(who_array,params[:a_wo2]),style: 'width:90px') %></td>
   <td>
   <%= select_tag(:u2 , options_for_select(usage_array,params[:u2]),style: 'width:135px') %></td>
+  <td>
+  <%= text_field_tag(:a_l2, params[:a_l2], style: 'width:20px', maxlength: 2) %></td>
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:n3 , params[:n3], style: 'width:200px', maxlength: 30) %></td>
+  <%= text_field_tag(:n3 , params[:n3], style: 'width:175px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:an3 , options_for_select(alignment_array,params[:an3]),style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:p3, params[:p3], style: 'width:30px', maxlength: 2) %></td>
+  <%= text_field_tag(:p3, params[:p3], style: 'width:25px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:ak3, params[:ak3], style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:ak3, params[:ak3], style: 'width:40px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:d3, params[:d3], style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:d3, params[:d3], style: 'width:40px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:a_a3 , options_for_select(adj_array,params[:a_a3]),style: 'width:115px') %></td>
   <td>
@@ -159,18 +163,20 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   <%= select_tag(:a_wo3 , options_for_select(who_array,params[:a_wo3]),style: 'width:90px') %></td>
   <td>
   <%= select_tag(:u3 , options_for_select(usage_array,params[:u3]),style: 'width:135px') %></td>
+  <td>
+  <%= text_field_tag(:a_l3, params[:a_l3], style: 'width:20px', maxlength: 2) %></td>
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:n4 , params[:n4], style: 'width:200px', maxlength: 30) %></td>
+  <%= text_field_tag(:n4 , params[:n4], style: 'width:175px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:an4 , options_for_select(alignment_array,params[:an4]),style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:p4, params[:p4], style: 'width:30px', maxlength: 2) %></td>
+  <%= text_field_tag(:p4, params[:p4], style: 'width:25px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:ak4, params[:ak4], style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:ak4, params[:ak4], style: 'width:40px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:d4, params[:d4], style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:d4, params[:d4], style: 'width:40px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:a_a4 , options_for_select(adj_array,params[:a_a4]),style: 'width:115px') %></td>
   <td>
@@ -181,18 +187,20 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   <%= select_tag(:a_wo4 , options_for_select(who_array,params[:a_wo4]),style: 'width:90px') %></td>
   <td>
   <%= select_tag(:u4 , options_for_select(usage_array,params[:u4]),style: 'width:135px') %></td>
+  <td>
+  <%= text_field_tag(:a_l4, params[:a_l4], style: 'width:20px', maxlength: 2) %></td>
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:n5 , params[:n5], style: 'width:200px', maxlength: 30) %></td>
+  <%= text_field_tag(:n5 , params[:n5], style: 'width:175px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:an5 , options_for_select(alignment_array,params[:an5]), style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:p5, params[:p5], style: 'width:30px', maxlength: 2) %></td>
+  <%= text_field_tag(:p5, params[:p5], style: 'width:25px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:ak5, params[:ak5], style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:ak5, params[:ak5], style: 'width:40px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:d5, params[:d5], style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:d5, params[:d5], style: 'width:40px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:a_a5 , options_for_select(adj_array,params[:a_a5]),style: 'width:115px') %></td>
   <td>
@@ -203,18 +211,20 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   <%= select_tag(:a_wo5 , options_for_select(who_array,params[:a_wo5]),style: 'width:90px') %></td>
   <td>
   <%= select_tag(:u5 , options_for_select(usage_array,params[:u5]),style: 'width:135px') %></td>
+  <td>
+  <%= text_field_tag(:a_l5, params[:a_l5], style: 'width:20px', maxlength: 2) %></td>
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:n6, params[:n6], style: 'width:200px', maxlength: 30) %></td>
+  <%= text_field_tag(:n6, params[:n6], style: 'width:175px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:an6, options_for_select(alignment_array,params[:an6]), style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:p6, params[:p6], style: 'width:30px', maxlength: 2) %></td>
+  <%= text_field_tag(:p6, params[:p6], style: 'width:25px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:ak6, params[:ak6], style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:ak6, params[:ak6], style: 'width:40px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:d6, params[:d6], style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:d6, params[:d6], style: 'width:40px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:a_a6, options_for_select(adj_array,params[:a_a6]),style: 'width:115px') %></td>
   <td>
@@ -225,18 +235,20 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   <%= select_tag(:a_wo6, options_for_select(who_array,params[:a_wo6]),style: 'width:90px') %></td>
   <td>
   <%= select_tag(:u6, options_for_select(usage_array,params[:u6]),style: 'width:135px') %></td>
+  <td>
+  <%= text_field_tag(:a_l6, params[:a_l6], style: 'width:20px', maxlength: 2) %></td>
 </tr>
 <tr>
   <td>
-  <%= text_field_tag(:n7, params[:n7], style: 'width:200px', maxlength: 30) %></td>
+  <%= text_field_tag(:n7, params[:n7], style: 'width:175px', maxlength: 30) %></td>
   <td>
   <%= select_tag(:an7, options_for_select(alignment_array,params[:an7]), style: 'width:70px') %></td>
   <td>
-  <%= text_field_tag(:p7, params[:p7], style: 'width:30px', maxlength: 2) %></td>
+  <%= text_field_tag(:p7, params[:p7], style: 'width:25px', maxlength: 2) %></td>
   <td>
-  <%= text_field_tag(:ak7, params[:ak7], style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:ak7, params[:ak7], style: 'width:40px', maxlength: 5) %></td>
   <td>
-  <%= text_field_tag(:d7, params[:d7], style: 'width:50px', maxlength: 5) %></td>
+  <%= text_field_tag(:d7, params[:d7], style: 'width:40px', maxlength: 5) %></td>
   <td>
   <%= select_tag(:a_a7, options_for_select(adj_array,params[:a_a7]),style: 'width:115px') %></td>
   <td>
@@ -247,6 +259,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   <%= select_tag(:a_wo7, options_for_select(who_array,params[:a_wo7]),style: 'width:90px') %></td>
   <td>
   <%= select_tag(:u7, options_for_select(usage_array,params[:u7]),style: 'width:135px') %></td>
+  <td>
+  <%= text_field_tag(:a_l7, params[:a_l7], style: 'width:20px', maxlength: 2) %></td>
 </tr></table><br>
 <table>
   <tr>
@@ -264,7 +278,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   <tr>
     <td><%= label_tag(:of, "Optimize for") %></td>
     <td><%= select_tag(:of, options_for_select(opt_array,params[:of])) %></td>
-    <td style="width:50px"><div align="center"><%= check_box_tag(:man,"1",params[:man]) %></div></td>
+    <td style="width:40px"><div align="center"><%= check_box_tag(:man,"1",params[:man]) %></div></td>
     <td style="width:250px"><%= label_tag(:man, "Calculate deck of first 5 for comparison?") %></td>
   </tr>
 </table>
