@@ -1,3 +1,334 @@
 <% provide(:title, 'Math') %>
-<h1>Card Optimization Math</h1>
-<p>This page will describe the math behind my algorithm if I find time to type it out in a nice format.</p>
+<h1>Deck Optimization Math</h1>
+<p>Below is my best attempt at turning the code behind the optimization algorithm into a readable format.  Some parts are fairly math heavy, but hopefully this will allow everyone to understand some of the mechanics behind the game.</p>
+<br>
+<h3>Optimization Algorithm</h3>
+The algorithm takes the 5-7 cards you entered and tests all possible combinations of 5 cards and keeps the one with the highest effective attack.  The important thing to keep in mind through this algorithm is that each card maintains it's own individual attack even though the visible boosts during battle just show the total boost to all 5 cards.  Each card also rounds off it's own attack after each boost.  This means boosting the total attack by X% then rounding may yield a different (wrong) result from multiplying and rounding each card individually.<br><br>
+I will refer to the card positions 1-5 going from top to bottom as in the deck edit screen.  The location of these positions during battle:<br>
+[4][2][1][3][5]
+<br><br>
+<h4>Overview</h4>
+<ol>
+	<li>Calculate Adapter Bonus for each card</li>
+	<li>Multiply each card by Alliance Bonus</li>
+	<li>Multiply each card by Scrapper Bonus</li>
+	<li>Calculate proc rate of each Ability</li>
+	<li>Calculate percentage increase for each Ability</li>
+	<li>Multiply appropiate cards' attack for each Ability</li>
+	<li>Convert any Universal Degrades into equivalent attack boost</li>
+	<li>Output optimal deck</li>
+</ol>
+<br>
+<h4>1. Adapter Bonus</h4>
+The Alliance adapters each say "5% Increase on ATK & DEF for [Speed/Tactics/Bruiser] Alignment Cards", but this is very misleading.  The adapter bonus actually gives a larger boost for having multiple of the same alignment in the deck.  Going in order from the first card to the last card, that card is boosted by 5% of it's own attack and 5% of each previous card of the same alignment.
+<br><br>
+<b>Example for a deck that is all the same alignment:</b><br>
+Card1 = Card1 * 105%<br>
+Card2 = Card2 * 105% + Card1 * 5%<br>
+Card3 = Card3 * 105% + Card1 * 5% + Card2 * 5%<br>
+Card4 = Card4 * 105% + Card1 * 5% + Card2 * 5% + Card3 * 5%<br>
+Card5 = Card5 * 105% + Card1 * 5% + Card2 * 5% + Card3 * 5% + Card4 * 5%<br>
+<br>
+<b>Example for a deck with cards 1 and 3 being Speed and cards 2, 4, and 5 being Tactics:</b><br>
+Card1 = Card1 * 105%<br>
+Card2 = Card2 * 105%<br>
+Card3 = Card3 * 105% + Card1 * 5%<br>
+Card4 = Card4 * 105% + Card2 * 5%<br>
+Card5 = Card5 * 105% + Card2 * 5% + Card4 * 5%<br>
+<br>
+Note that the example with multiple alignments has a lot less boosts.  This is part of the reason single-alignment decks are typically better than mixed-alignment decks.<br>
+<br>
+<b>Implications</b>
+<ul>
+	<li>Decks ordered from highest attack to lowest attack will yield the largest adapter bonus. <a href="http://mwoh-do.herokuapp.com/optimize?utf8=%E2%9C%93&n=Card1&an=BRU&p=10&ak=1000&d=1100&a_a=0&a_e=0&a_wt=0&a_wo=None&u=3&a_l=1&n2=Card2&an2=BRU&p2=11&ak2=1500&d2=950&a_a2=0&a_e2=0&a_wt2=0&a_wo2=None&u2=3&a_l2=1&n3=Card3&an3=BRU&p3=12&ak3=1234&d3=1000&a_a3=0&a_e3=0&a_wt3=0&a_wo3=None&u3=3&a_l3=1&n4=Card4&an4=BRU&p4=13&ak4=5555&d4=4985&a_a4=0&a_e4=0&a_wt4=0&a_wo4=None&u4=3&a_l4=1&n5=Card5&an5=BRU&p5=14&ak5=2100&d5=2000&a_a5=0&a_e5=0&a_wt5=0&a_wo5=None&u5=3&a_l5=1&n6=&an6=BRU&p6=&ak6=&d6=&a_a6=0&a_e6=0&a_wt6=0&a_wo6=None&u6=3&a_l6=1&n7=&an7=BRU&p7=&ak7=&d7=&a_a7=0&a_e7=0&a_wt7=0&a_wo7=None&u7=3&a_l7=1&adp=1&al=0&sc=0&of=0&man=1&commit=Optimize">Simple Example</a></li>
+	<li>Cards lower in the deck get a larger part of the adapter bonus.  This means Self-Boost cards typically perform the best at the bottom of the deck, even if they have a higher attack than others in the deck.  The small amount lost in the adapter bonus is sufficiently made up for by the extra gain from the self boost. <a href="http://mwoh-do.herokuapp.com/optimize?utf8=%E2%9C%93&n=Team-Booster&an=BRU&p=10&ak=1100&d=1&a_a=3&a_e=1&a_wt=1&a_wo=All&u=3&a_l=1&n2=Self-Booster&an2=BRU&p2=11&ak2=1100&d2=1&a_a2=3&a_e2=1&a_wt2=1&a_wo2=Self&u2=3&a_l2=1&n3=Card3&an3=BRU&p3=12&ak3=1000&d3=1&a_a3=0&a_e3=0&a_wt3=0&a_wo3=None&u3=3&a_l3=1&n4=Card4&an4=BRU&p4=13&ak4=1000&d4=1&a_a4=0&a_e4=0&a_wt4=0&a_wo4=None&u4=3&a_l4=1&n5=Card5&an5=BRU&p5=14&ak5=1000&d5=1&a_a5=0&a_e5=0&a_wt5=0&a_wo5=None&u5=3&a_l5=1&n6=&an6=BRU&p6=&ak6=&d6=&a_a6=0&a_e6=0&a_wt6=0&a_wo6=None&u6=3&a_l6=1&n7=&an7=BRU&p7=&ak7=&d7=&a_a7=0&a_e7=0&a_wt7=0&a_wo7=None&u7=3&a_l7=1&adp=1&al=0&sc=0&of=0&man=1&commit=Optimize">Example</a> (Note that despite the Manual deck having a higher adapter bonus, the Self-Booster being in position 5 yields a higher average attack in the Optimal deck)</li>
+</ul>
+<br><br>
+<h4>2. Alliance Bonus</h4>
+Having a position in your alliance will boost either your attack, defense, or both.  This increase is then multiplied by each card individually and then rounded.<br>
+<br>
+<table border="3">
+	<tr>
+		<td colspan = "2" rowspan="2"></td><td colspan="2"><center>Boost</center></td>
+	</tr>
+	<tr>
+		<td><center>Attack</center></td>
+		<td><center>Defense</center></td>
+	</tr>
+	<tr>
+		<td rowspan="4">Alliance<br>Position</td>
+		<td>Alliance Leader</td>
+		<td><center>10%</center></td>
+		<td><center>10%</center></td>
+	</tr>
+	<tr>
+		<td>Vice-Leader</td>
+		<td><center>5%</center></td>
+		<td><center>5%</center></td>
+	</tr>
+	<tr>
+		<td>Offense Leader</td>
+		<td><center>10%</center></td>
+		<td><center>0%</center></td>
+	</tr>
+	<tr>
+		<td>Defensive Leader</td>
+		<td><center>0%</center></td>
+		<td><center>10%</center></td>
+	</tr>
+</table>
+<br><br>
+<b>Equation</b><br>
+CardX = CardX * (100% + Alliance Position Boost)<br>
+<br>
+<h4>3. Scrapper Bonus</h4>
+Winning battles will occasionally award you with a Scrapper bonus of either 10%, 21%, or 30% which will last for 10 minutes.  Much like the alliance bonus, this boost is then multiplied by each card individually and then rounded.<br>
+<br>
+<b>Equation</b><br>
+CardX = CardX * (100% + Scrapper Boost)<br>
+<br>
+<h4>4. Ability Proc Rates</h4>
+All abilities will have a different "Usage" that determines how likely it is to proc during battle.  I would like to thank Yusuke for his work calculating proc rates of each usage (<a href="http://www.neoseeker.com/forums/59268/t1832176-best-cards-updated-3-19-proc-rates-us/">Proc rates R US</a>).  I extrapolated the rates of "Low" and "Relatively Low", so if anyone has data on the actual proc rates of these two, please contact me on LINE (arkcruiser).<br>
+<br>
+The Card in position 1 has an increased chance of proccing, and positions 2-5 all have an equal chance of proccing if their usages are the same.<br>
+<br>
+<table border="3">
+	<tr>
+		<td colspan="2" rowspan="2"></td><td colspan="2"><center>Deck Position</center></td>
+	</tr>
+	<tr>
+		<td><center>1</center></td><td><center>2 - 5</center></td>
+	</tr>
+	<tr>
+		<td rowspan="5">Usage</td>
+		<td>Low</td>
+		<td><center>35%</center></td>
+		<td><center>25%</center></td>
+	</tr>
+	<tr>
+		<td>Relatively Low</td>
+		<td><center>40%</center></td>
+		<td><center>33%</center></td>
+	</tr>
+	<tr>
+		<td>Average</td>
+		<td><center>55%</center></td>
+		<td><center>50%</center></td>
+	</tr>
+	<tr>
+		<td>Relatively High</td>
+		<td><center>68%</center></td>
+		<td><center>66%</center></td>
+	</tr>
+	<tr>
+		<td>High</td>
+		<td><center>75%</center></td>
+		<td><center>75%</center></td>
+	</tr>
+</table>
+<br>
+This proc rate will come into play in step 6.<br>
+<br>
+<h4>5. Ability Increase</h4>
+The wording of each Ability has several key components that determine which cards and what % each ability will boost.  Ability levels will increase this % boost by an amount also determined by the wording of the ability.  I retrieved most of these values from either the <a href="http://www.neoseeker.com/forums/59268/">neoseeker forums</a> or the <a href="http://marvel-war-of-heroes.wikia.com/wiki/Marvel:_War_of_Heroes_Wiki">MWoH Wiki</a>, so thank you to whoever figured them out originally.  I have extrapolated the values for Partially and Notably because I could not find any data on them, so your results may vary for the lower rarity cards with high ability levels.<br>
+<br>
+<table border="3">
+	<tr>
+		<td colspan="7"><center><b>Base Boost</b></center></td>
+	</tr>
+	<tr>
+		<td colspan="2"></td><td colspan="5"><center>Adjective</center></td>
+	</tr>
+	<tr>
+		<td><center>Who</center></td>
+		<td><center>What</center></td>
+		<td><center>Partially</center></td>
+		<td><center>Notably</center></td>
+		<td><center>Remarkable</center></td>
+		<td><center>Significantly</center></td>
+		<td><center>Extremely</center></td>
+	</tr>
+	<tr>
+		<td><center>1 Alignment</center></td>
+		<td><center>ATK or DEF</center></td>
+		<td><center>4%</center></td>
+		<td><center>8%</center></td>
+		<td><center>12%</center></td>
+		<td><center>16%</center></td>
+		<td><center>20%</center></td>
+	</tr>
+	<tr>
+		<td><center>All</center></td>
+		<td><center>ATK or DEF</center></td>
+		<td><center>3%</center></td>
+		<td><center>6%</center></td>
+		<td><center>9%</center></td>
+		<td><center>12%</center></td>
+		<td><center>16%</center></td>
+	</tr>
+	<tr>
+		<td><center>Self</center></td>
+		<td><center>ATK or DEF</center></td>
+		<td><center>12%</center></td>
+		<td><center>24%</center></td>
+		<td><center>36%</center></td>
+		<td><center>48%</center></td>
+		<td><center>58%</center></td>
+	</tr>
+	<tr>
+		<td><center>1 Alignment</center></td>
+		<td><center>ATK and DEF</center></td>
+		<td><center>3%</center></td>
+		<td><center>6%</center></td>
+		<td><center>9%</center></td>
+		<td><center>12%</center></td>
+		<td><center>16%</center></td>
+	</tr>
+	<tr>
+		<td><center>All</center></td>
+		<td><center>ATK and DEF</center></td>
+		<td><center>2%</center></td>
+		<td><center>4%</center></td>
+		<td><center>7%</center></td>
+		<td><center>9%</center></td>
+		<td><center>12%</center></td>
+	</tr>
+	<tr>
+		<td><center>Self</center></td>
+		<td><center>ATK and DEF</center></td>
+		<td><center>10%</center></td>
+		<td><center>20%</center></td>
+		<td><center>30%</center></td>
+		<td><center>38%</center></td>
+		<td><center>48%</center></td>
+	</tr>
+</table>
+<br>
+<table border="3">
+	<tr>
+		<td colspan="7"><center><b>Level Boost Multiplier</b></center></td>
+	</tr>
+	<tr>
+		<td colspan="2"></td><td colspan="5"><center>Adjective</center></td>
+	</tr>
+	<tr>
+		<td><center>Who</center></td>
+		<td><center>What</center></td>
+		<td><center>Partially</center></td>
+		<td><center>Notably</center></td>
+		<td><center>Remarkable</center></td>
+		<td><center>Significantly</center></td>
+		<td><center>Extremely</center></td>
+	</tr>
+	<tr>
+		<td><center>1 Alignment</center></td>
+		<td><center>ATK or DEF</center></td>
+		<td><center>0.6%</center></td>
+		<td><center>0.7%</center></td>
+		<td><center>0.8%</center></td>
+		<td><center>0.9%</center></td>
+		<td><center>1.0%</center></td>
+	</tr>
+	<tr>
+		<td><center>All</center></td>
+		<td><center>ATK or DEF</center></td>
+		<td><center>0.6%</center></td>
+		<td><center>0.7%</center></td>
+		<td><center>0.7%</center></td>
+		<td><center>0.8%</center></td>
+		<td><center>0.8%</center></td>
+	</tr>
+	<tr>
+		<td><center>Self</center></td>
+		<td><center>ATK or DEF</center></td>
+		<td><center>1.0%</center></td>
+		<td><center>2.0%</center></td>
+		<td><center>2.0%</center></td>
+		<td><center>2.4%</center></td>
+		<td><center>2.4%</center></td>
+	</tr>
+	<tr>
+		<td><center>1 Alignment</center></td>
+		<td><center>ATK and DEF</center></td>
+		<td><center>0.6%</center></td>
+		<td><center>0.6%</center></td>
+		<td><center>0.7%</center></td>
+		<td><center>0.8%</center></td>
+		<td><center>0.8%</center></td>
+	</tr>
+	<tr>
+		<td><center>All</center></td>
+		<td><center>ATK and DEF</center></td>
+		<td><center>0.6%</center></td>
+		<td><center>0.7%</center></td>
+		<td><center>0.7%</center></td>
+		<td><center>0.8%</center></td>
+		<td><center>0.8%</center></td>
+	</tr>
+	<tr>
+		<td><center>Self</center></td>
+		<td><center>ATK and DEF</center></td>
+		<td><center>1.0%</center></td>
+		<td><center>2.0%</center></td>
+		<td><center>2.0%</center></td>
+		<td><center>2.4%</center></td>
+		<td><center>2.4%</center></td>
+	</tr>
+</table>
+<br>
+<b>Equation</b><br>
+If the ability level is maxed (lvl 10), then the multiplier times 10 is added to the base.<br>
+Ability Boost = Base Boost + (10 * Level Boost Multiplier)<br>
+<br>
+If the ability level is not maxed, the multiplier times the ability level minus one is rounded and then added to the base:<br>
+Ability Boost = Base Boost + ((Ability Level - 1) * Level Boost Multiplier)<br>
+<br>
+This Ability Boost is then used in step 6.<br>
+<br>
+<h4>6. Average Ability Boost</h4>
+Using the ability proc rate and ability boost, the average boost from that card's ability can then be determined.  This average boost is then applied to the appropriate cards in the deck.<br>
+<br>
+<b>Equation</b><br>
+Average Boost = 100% + (Ability Proc Rate * Ability Boost)<br>
+<br>
+<b>Example of a card with an average usage in position 1 that "Significantly Boosts ATK of Speeds" with ability level of 4:</b><br>
+Ability Proc Rate = 55% (from part 4)<br>
+Ability Boost = 16% + ((4 - 1) * 0.9%) = 16% + (3 * 0.9%) = 16% + 2.7% = 16% + 3% = 19% (from part 5)<br>
+Average Boost = 100% + (55% * 19%) = 100% + 10.45% = 110.45%<br>
+<br>
+<b>Example of a card with an Relatively High usage in position 3 that "Extremely Boosts ATK/DEF of All" with ability level of 6:</b><br>
+Ability Proc Rate = 66% (from part 4)<br>
+Ability Boost = 12% + ((6 - 1) * 0.8%) = 12% + (5 * 0.8%) = 12% + 4.0% = 16% (from part 5)<br>
+Average Boost = 100% + (66% * 16%) = 100% + 10.56% = 110.56%<br>
+<br>
+This calculated Average Boost is then multiplied by the appropriate cards to increase individual cards' attack/defense.<br>
+<br>
+<h4>7. Universal Degrades</h4>
+While abilities such as "Significantly weaken DEF of opposing team." do not boost your own card's attack or defense, they are very powerful abilities that must be taken into account when determining the optimal deck.  This can be done by converting the universal degrade into an equivalent boost.  As a rule, when degrades and boosts have the same % change, the degrade is a better ability.  Even when the degrade is a lower %, it is still the better ability in some cases.  I refer you to this thread if you want this explained in more detail (<a href="http://www.neoseeker.com/forums/59268/t1830123-ur-ob-ss-ur-soa-thor/">http://www.neoseeker.com/forums/59268/t1830123-ur-ob-ss-ur-soa-thor/</a>).<br>
+<br>
+<b>Equation</b><br>
+Equivalent Boost = (100% / (100% - Degrade%)) - 100%<br>
+Effective Multiplier = 100% + (Ability Proc Rate * Equivalent Boost)<br>
+<br>
+<b>Example with "Significantly weaken DEF of opposing team." (Ability level 1, Average Usage):</b><br>
+Ability Proc Rate = 50% (from part 4)<br>
+Degrade% = 12% (from part 5)<br>
+Equivalent Boost = (100% / (100% - 16%)) - 100% = (100% / 88%) - 100% = 113.6% - 100% = 13.6%<br>
+Effective Multiplier = 100% + (50% * 13.6%) = 106.8%<br>
+<br>
+Once the Effective Multiplier is determined for all cards with universal degrades, they are then multiplied by each other, and finally multiplied by the sum of each card's individual attack/defense to get the final effective attack/defense.<br>
+<br>
+<h4>8. Output Optimal Deck</h4>
+Once the adapter bonus, alliance bonus, scrapper bonus, and abilites have all been taken into account for all possible combinations of the 5-7 cards entered, the deck with the highest effective attack/defense is then output in the optimal order.<br>
+<br>
+<br>
+<h4>Tips for good decks</h4>
+<ul>
+	<li>Typically, the card with the best ability should be placed in the first position</li>
+	<li>Cards in positions 2-5 should be placed in order from largest to smallest attack/defense to maximize the adapter bonus*</li>
+	<li>*The exception to this rule is Self Boosts, because they benefit from being closer to the bottom of the deck</li>
+	<li>Single alignment decks are usually better than mixed decks due to the Adapter Bonus and most Abilities</li>
+</ul>
+<br>
+<h4>Try it Out!</h4>
+<%= link_to "Deck Optimizer (Beta)",    optimizer_path %>

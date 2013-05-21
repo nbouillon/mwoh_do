@@ -634,6 +634,8 @@ class OptimizerController < ApplicationController
                     multiplier = 0.68
                   elsif cards[0]['a_usage'] == '5'
                     multiplier = 0.75
+                  elsif cards[0]['a_usage'] == '2'
+                    multiplier = 0.40
                   else
                     multiplier = 0.35
                   end
@@ -676,8 +678,10 @@ class OptimizerController < ApplicationController
                       multiplier = 0.66
                     elsif cards[i]['a_usage'] == '5'
                       multiplier = 0.75
-                    else
+                    elsif cards[0]['a_usage'] == '2'
                       multiplier = 0.33
+                    else
+                      multiplier = 0.25
                     end
                     if cards[i]['a_who'] == 'Speeds'
                       for j in 0...5
@@ -719,14 +723,16 @@ class OptimizerController < ApplicationController
                 for i in 0...5
                   if cards[i]['debuff_def'] == "Yes"
                     if i == 0
-                      if cards[i]['a_usage'] == '3'
+                      if cards[0]['a_usage'] == '3'
                         multiplier = 0.55
-                      elsif cards[i]['a_usage'] == '4'
+                      elsif cards[0]['a_usage'] == '4'
                         multiplier = 0.68
-                      elsif cards[i]['a_usage'] == '5'
+                      elsif cards[0]['a_usage'] == '5'
                         multiplier = 0.75
+                      elsif cards[0]['a_usage'] == '2'
+                        multiplier = 0.40
                       else
-                        multiplier = 0.33
+                        multiplier = 0.35
                       end
                     else
                       if cards[i]['a_usage'] == '3'
@@ -735,8 +741,10 @@ class OptimizerController < ApplicationController
                         multiplier = 0.66
                       elsif cards[i]['a_usage'] == '5'
                         multiplier = 0.75
-                      else
+                      elsif cards[0]['a_usage'] == '2'
                         multiplier = 0.33
+                      else
+                        multiplier = 0.25
                       end
                     end
                     eff_boost = (1.0 / (1.0 - (cards[i]['a_pct']/100.0))) - 1
@@ -887,6 +895,8 @@ class OptimizerController < ApplicationController
                     multiplier = 0.68
                   elsif cards[0]['a_usage'] == '5'
                     multiplier = 0.75
+                  elsif cards[0]['a_usage'] == '2'
+                    multiplier = 0.40
                   else
                     multiplier = 0.35
                   end
@@ -929,8 +939,10 @@ class OptimizerController < ApplicationController
                       multiplier = 0.66
                     elsif cards[i]['a_usage'] == '5'
                       multiplier = 0.75
-                    else
+                    elsif cards[0]['a_usage'] == '2'
                       multiplier = 0.33
+                    else
+                      multiplier = 0.25
                     end
                     if cards[i]['a_who'] == 'Speeds'
                       for j in 0...5
@@ -972,14 +984,16 @@ class OptimizerController < ApplicationController
                 for i in 0...5
                   if cards[i]['debuff_atk'] == "Yes"
                     if i == 0
-                      if cards[i]['a_usage'] == '3'
+                      if cards[0]['a_usage'] == '3'
                         multiplier = 0.55
-                      elsif cards[i]['a_usage'] == '4'
+                      elsif cards[0]['a_usage'] == '4'
                         multiplier = 0.68
-                      elsif cards[i]['a_usage'] == '5'
+                      elsif cards[0]['a_usage'] == '5'
                         multiplier = 0.75
+                      elsif cards[0]['a_usage'] == '2'
+                        multiplier = 0.40
                       else
-                        multiplier = 0.33
+                        multiplier = 0.35
                       end
                     else
                       if cards[i]['a_usage'] == '3'
@@ -988,8 +1002,10 @@ class OptimizerController < ApplicationController
                         multiplier = 0.66
                       elsif cards[i]['a_usage'] == '5'
                         multiplier = 0.75
-                      else
+                      elsif cards[0]['a_usage'] == '2'
                         multiplier = 0.33
+                      else
+                        multiplier = 0.25
                       end
                     end
                     eff_boost = (1.0 / (1.0 - (cards[i]['a_pct']/100.0))) - 1
