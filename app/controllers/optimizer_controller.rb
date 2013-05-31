@@ -490,6 +490,70 @@ class OptimizerController < ApplicationController
       cardlist.append(newcard)
     end
 
+    if params[:n8] != ""
+      newcard = {}
+      newcard['name'] = params[:n8]
+      newcard['align'] = params[:an8]
+      newcard['pwr'] = params[:p8].to_i
+      newcard['atk'] = params[:ak8].to_i
+      newcard['def'] = params[:d8].to_i
+      temp_effect = params[:a_e8]
+      temp_what = params[:a_wt8]
+      temp_who = params[:a_wo8]
+      temp_adj = params[:a_a8]
+      temp_usage = params[:u8]
+      temp_alvl = params[:a_l8].to_i
+      if temp_alvl < 1 or temp_alvl > 10
+        temp_alvl = 1
+      end
+
+      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage,temp_alvl)
+      cardlist.append(newcard)
+    end
+
+    if params[:n9] != ""
+      newcard = {}
+      newcard['name'] = params[:n9]
+      newcard['align'] = params[:an9]
+      newcard['pwr'] = params[:p9].to_i
+      newcard['atk'] = params[:ak9].to_i
+      newcard['def'] = params[:d9].to_i
+      temp_effect = params[:a_e9]
+      temp_what = params[:a_wt9]
+      temp_who = params[:a_wo9]
+      temp_adj = params[:a_a9]
+      temp_usage = params[:u9]
+      temp_alvl = params[:a_l9].to_i
+      if temp_alvl < 1 or temp_alvl > 10
+        temp_alvl = 1
+      end
+
+      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage,temp_alvl)
+      cardlist.append(newcard)
+    end
+
+    if params[:n0] != ""
+      newcard = {}
+      newcard['name'] = params[:n0]
+      newcard['align'] = params[:an0]
+      newcard['pwr'] = params[:p0].to_i
+      newcard['atk'] = params[:ak0].to_i
+      newcard['def'] = params[:d0].to_i
+      temp_effect = params[:a_e0]
+      temp_what = params[:a_wt0]
+      temp_who = params[:a_wo0]
+      temp_adj = params[:a_a0]
+      temp_usage = params[:u0]
+      temp_alvl = params[:a_l0].to_i
+      if temp_alvl < 1 or temp_alvl > 10
+        temp_alvl = 1
+      end
+
+      newcard = card_stats(newcard,temp_effect,temp_what,temp_who,temp_adj,temp_usage,temp_alvl)
+      cardlist.append(newcard)
+    end
+
+
     numcards = cardlist.length
 
     if numcards < 5
