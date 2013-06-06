@@ -218,7 +218,7 @@ class OptimizerController < ApplicationController
             if temp_alvl == 10
               newcard['a_pct'] = 16.0 + 8.0
             else
-              newcard['a_pct'] = (16.0 + (temp_alvl - 1) * 8.0).round
+              newcard['a_pct'] = (16.0 + (temp_alvl - 1) * 0.8).round
             end
           else
             newcard['a_pct'] = 0.0
